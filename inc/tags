@@ -1,0 +1,746 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADD	amalgamate/Config.hpp	24;"	d
+ADD	amalgamate/Config.hpp	34;"	d
+BSPTree	amalgamate/tilegenerator/BSPTree.hpp	/^	class BSPTree : public TileGenerator$/;"	c	namespace:amalgamate	inherits:TileGenerator
+BUFSIZE	amalgamate/tilegenerator/Collage.hpp	46;"	d
+Collage	amalgamate/tilegenerator/Collage.hpp	/^	class Collage : public TileGenerator $/;"	c	namespace:amalgamate	inherits:TileGenerator
+Config	amalgamate/Config.hpp	/^		Config() { init(); }$/;"	f	class:amalgamate::Config	access:public	signature:()
+Config	amalgamate/Config.hpp	/^		Config(string filename) { init(); read(filename); }$/;"	f	class:amalgamate::Config	access:public	signature:(string filename)
+Config	amalgamate/Config.hpp	/^	class Config {$/;"	c	namespace:amalgamate
+DIRECTIONS	amalgamate/descriptor/GIST.hpp	/^			static const int DIRECTIONS;$/;"	m	class:amalgamate::descriptor::GIST	access:private
+Database	amalgamate/Database.hpp	/^		Database(Config* _config);$/;"	p	class:amalgamate::Database	access:public	signature:(Config* _config)
+Database	amalgamate/Database.hpp	/^		Database(string inputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputFile)
+Database	amalgamate/Database.hpp	/^	class Database $/;"	c	namespace:amalgamate
+EDGE_BOTTOM	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+EDGE_LEFT	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+EDGE_RIGHT	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+EDGE_TOP	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+Edge	amalgamate/tilegenerator/Collage.hpp	/^	struct Edge {$/;"	s	namespace:amalgamate
+EdgeType	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	t	namespace:amalgamate	typeref:enum:amalgamate::__anon3
+FACTOR	amalgamate/tilegenerator/Warp.hpp	76;"	d
+FOR_2D	amalgamate/utils.hpp	17;"	d
+GIST	amalgamate/descriptor/GIST.hpp	/^			GIST() {}$/;"	f	class:amalgamate::descriptor::GIST	access:public	signature:()
+GIST	amalgamate/descriptor/GIST.hpp	/^			GIST(YUVImage& yuvImage) { \/*build(yuvImage);*\/ }$/;"	f	class:amalgamate::descriptor::GIST	access:public	signature:(YUVImage& yuvImage)
+GIST	amalgamate/descriptor/GIST.hpp	/^	class GIST {$/;"	c	namespace:amalgamate::descriptor
+HEADER	amalgamate/Database.hpp	/^		static const string HEADER;$/;"	m	class:amalgamate::Database	access:private
+Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram() { setColorRange(256);}$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:()
+Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(Image& image, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(Image& image, u16 _colorRange)
+Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(YUVImage& yuvImage, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(YUVImage& yuvImage, u16 _colorRange)
+Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(int _colorRange) { setColorRange(_colorRange); }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(int _colorRange)
+Histogram	amalgamate/descriptor/Histogram.hpp	/^	class Histogram {$/;"	c	namespace:amalgamate::descriptor
+HistogramChannel	amalgamate/descriptor/Histogram.hpp	/^		typedef vector<u16> HistogramChannel;$/;"	t	class:amalgamate::descriptor::Histogram	access:private
+IMAGE_SIZE	amalgamate/descriptor/YUVImage.hpp	19;"	d
+INF	amalgamate/utils.hpp	15;"	d
+INVALID	amalgamate/descriptor/YUVImage.hpp	16;"	d
+INVALID	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+INVALID_MATCH	amalgamate/utils.hpp	22;"	d
+ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor();$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:()
+ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(Image& image); $/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image)
+ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(Image& image, int _width, int _height, int _offX, int _offY); $/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image, int _width, int _height, int _offX, int _offY)
+ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(string _filename);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(string _filename)
+ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^	class ImageDescriptor $/;"	c	namespace:amalgamate
+LOG	amalgamate/utils.hpp	20;"	d
+Log	amalgamate/utils.hpp	/^			Log( const Log& );$/;"	p	class:amalgamate::Log	access:private	signature:( const Log& )
+Log	amalgamate/utils.hpp	/^			Log() { \/*loglevel_ = 1;*\/ };$/;"	f	class:amalgamate::Log	access:private	signature:()
+Log	amalgamate/utils.hpp	/^	class Log $/;"	c	namespace:amalgamate
+Match	amalgamate/Mosaic.hpp	/^		Match() : 	result(INVALID_MATCH) {}$/;"	f	struct:amalgamate::Match	access:public	signature:()
+Match	amalgamate/Mosaic.hpp	/^	struct Match$/;"	s	namespace:amalgamate
+MatchList	amalgamate/Mosaic.hpp	/^	class MatchList : public list<Match>$/;"	c	namespace:amalgamate	inherits:list
+Mosaic	amalgamate/Mosaic.hpp	/^		Mosaic();$/;"	p	class:amalgamate::Mosaic	access:public	signature:()
+Mosaic	amalgamate/Mosaic.hpp	/^		Mosaic(Database* _database, TileList* _tileList, Config* _config);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Database* _database, TileList* _tileList, Config* _config)
+Mosaic	amalgamate/Mosaic.hpp	/^	class Mosaic $/;"	c	namespace:amalgamate
+MosaicImageDescriptor	amalgamate/Mosaic.hpp	/^		MosaicImageDescriptor() : 	used_(0) {}$/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+MosaicImageDescriptor	amalgamate/Mosaic.hpp	/^	class MosaicImageDescriptor$/;"	c	namespace:amalgamate
+NPIXELS	amalgamate/descriptor/Thumbnail.hpp	22;"	d
+ParameterTableElement	amalgamate/Config.hpp	/^	typedef pair<string,string> ParameterTableElement;$/;"	t	namespace:amalgamate
+PixBuf	amalgamate/descriptor/YUVImage.hpp	/^			typedef u8 PixBuf[IMAGE_SIZE*IMAGE_SIZE];$/;"	t	class:amalgamate::descriptor::YUVImage	access:public
+Point	amalgamate/utils.hpp	/^		Point() { set(0,0); }$/;"	f	struct:amalgamate::Point	access:public	signature:()
+Point	amalgamate/utils.hpp	/^		Point(int _x, int _y) { set(_x,_y); }$/;"	f	struct:amalgamate::Point	access:public	signature:(int _x, int _y)
+Point	amalgamate/utils.hpp	/^	struct Point {$/;"	s	namespace:amalgamate
+Reader	amalgamate/utils.hpp	/^			Reader(string filename) { is_.open(filename.c_str(),ios::binary| ios::in); }$/;"	f	class:amalgamate::Reader	access:public	signature:(string filename)
+Reader	amalgamate/utils.hpp	/^	class Reader {$/;"	c	namespace:amalgamate
+Rect	amalgamate/utils.hpp	/^			Rect() { set(0,0,0,0); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+Rect	amalgamate/utils.hpp	/^			Rect(int _x1, int _y1, int _x2, int _y2) { set(_x1,_y1,_x2,_y2); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1, int _y1, int _x2, int _y2)
+Rect	amalgamate/utils.hpp	/^	class Rect {$/;"	c	namespace:amalgamate
+Regular	amalgamate/tilegenerator/Regular.hpp	/^	class Regular : public TileGenerator 	$/;"	c	namespace:amalgamate::tilesgenerator	inherits:TileGenerator
+SIZES	amalgamate/descriptor/GIST.hpp	/^			static const int SIZES;$/;"	m	class:amalgamate::descriptor::GIST	access:private
+SIZE_FACTOR	amalgamate/descriptor/Thumbnail.hpp	20;"	d
+Split	amalgamate/tilegenerator/BSPTree.hpp	/^		typedef pair<Rect,Rect> Split;$/;"	t	class:amalgamate::BSPTree	access:private
+SplitAxis	amalgamate/tilegenerator/BSPTree.hpp	/^		typedef bool SplitAxis;$/;"	t	class:amalgamate::BSPTree	access:private
+THRESHOLD	amalgamate/tilegenerator/Warp.hpp	75;"	d
+THUMBNAIL_SIZE	amalgamate/descriptor/Thumbnail.hpp	21;"	d
+ThumbMatch	amalgamate/Mosaic.hpp	/^	struct ThumbMatch : Match$/;"	s	namespace:amalgamate	inherits:Match
+Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^			Thumbnail() {}$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^			Thumbnail(YUVImage& yuvImage) { build(yuvImage); }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(YUVImage& yuvImage)
+Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^	class Thumbnail {$/;"	c	namespace:amalgamate::descriptor
+Tile	amalgamate/Tile.hpp	/^	struct Tile {$/;"	s	namespace:amalgamate
+TileGenerator	amalgamate/TileGenerator.hpp	/^	class TileGenerator {$/;"	c	namespace:amalgamate
+TileList	amalgamate/TileList.hpp	/^		TileList(Config* _config);$/;"	p	class:amalgamate::TileList	access:public	signature:(Config* _config)
+TileList	amalgamate/TileList.hpp	/^		TileList(string inputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile)
+TileList	amalgamate/TileList.hpp	/^	class TileList : public vector<Tile> {$/;"	c	namespace:amalgamate	inherits:vector
+TileMatches	amalgamate/Mosaic.hpp	/^		TileMatches( Rect _rect, ImageDescriptor* _desc );$/;"	p	struct:amalgamate::TileMatches	access:public	signature:( Rect _rect, ImageDescriptor* _desc )
+TileMatches	amalgamate/Mosaic.hpp	/^	struct TileMatches$/;"	s	namespace:amalgamate	inherits:list
+Warp	amalgamate/tilegenerator/Warp.hpp	/^	class Warp : public TileGenerator$/;"	c	namespace:amalgamate	inherits:TileGenerator
+WarpTile	amalgamate/tilegenerator/Warp.hpp	/^	typedef pair<Tile,double> WarpTile;$/;"	t	namespace:amalgamate
+Writer	amalgamate/utils.hpp	/^			Writer(string filename) { os_.open(filename.c_str(), ios::binary | ios::out); }$/;"	f	class:amalgamate::Writer	access:public	signature:(string filename)
+Writer	amalgamate/utils.hpp	/^	class Writer {$/;"	c	namespace:amalgamate
+X_AXIS	amalgamate/tilegenerator/Warp.hpp	15;"	d
+X_AXIS	amalgamate/utils.hpp	12;"	d
+YUVImage	amalgamate/descriptor/YUVImage.hpp	/^			YUVImage(Image& image);$/;"	p	class:amalgamate::descriptor::YUVImage	access:public	signature:(Image& image)
+YUVImage	amalgamate/descriptor/YUVImage.hpp	/^	class YUVImage {$/;"	c	namespace:amalgamate::descriptor
+YUV_MAX_DIFF	amalgamate/descriptor/YUVImage.hpp	15;"	d
+Y_AXIS	amalgamate/tilegenerator/Warp.hpp	16;"	d
+Y_AXIS	amalgamate/utils.hpp	13;"	d
+addHistSmallMatch	amalgamate/Mosaic.hpp	/^		bool addHistSmallMatch(Match& match, size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(Match& match, size_t maxCount)
+addTile	amalgamate/TileGenerator.hpp	/^		void addTile(Rect rect, Image* img, TileList* tileList)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:(Rect rect, Image* img, TileList* tileList)
+amalgamate	amalgamate.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/Config.hpp	/^namespace amalgamate $/;"	n
+amalgamate	amalgamate/Database.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/ImageDescriptor.hpp	/^namespace amalgamate {$/;"	n
+amalgamate	amalgamate/Mosaic.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/Tile.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/TileGenerator.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/TileList.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/descriptor/GIST.hpp	/^namespace amalgamate {$/;"	n
+amalgamate	amalgamate/descriptor/Histogram.hpp	/^namespace amalgamate {$/;"	n
+amalgamate	amalgamate/descriptor/Thumbnail.hpp	/^namespace amalgamate $/;"	n
+amalgamate	amalgamate/descriptor/YUVImage.hpp	/^namespace amalgamate $/;"	n
+amalgamate	amalgamate/tilegenerator/BSPTree.hpp	/^namespace amalgamate $/;"	n
+amalgamate	amalgamate/tilegenerator/Collage.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/tilegenerator/Regular.hpp	/^namespace amalgamate$/;"	n
+amalgamate	amalgamate/tilegenerator/Warp.hpp	/^namespace amalgamate $/;"	n
+amalgamate	amalgamate/utils.hpp	/^namespace amalgamate $/;"	n
+amalgamate::BSPTree	amalgamate/tilegenerator/BSPTree.hpp	/^	class BSPTree : public TileGenerator$/;"	c	namespace:amalgamate	inherits:TileGenerator
+amalgamate::BSPTree::Split	amalgamate/tilegenerator/BSPTree.hpp	/^		typedef pair<Rect,Rect> Split;$/;"	t	class:amalgamate::BSPTree	access:private
+amalgamate::BSPTree::SplitAxis	amalgamate/tilegenerator/BSPTree.hpp	/^		typedef bool SplitAxis;$/;"	t	class:amalgamate::BSPTree	access:private
+amalgamate::BSPTree::bspTree	amalgamate/tilegenerator/BSPTree.hpp	/^		void bspTree(Rect rect, Image* img, TileList* tileList)$/;"	f	class:amalgamate::BSPTree	access:private	signature:(Rect rect, Image* img, TileList* tileList)
+amalgamate::BSPTree::genTiles	amalgamate/tilegenerator/BSPTree.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::BSPTree	access:public	signature:(Image& img, TileList* tileList)
+amalgamate::BSPTree::nameString	amalgamate/tilegenerator/BSPTree.hpp	/^		string nameString() { return string("BSPTree"); }$/;"	f	class:amalgamate::BSPTree	access:public	signature:()
+amalgamate::Collage	amalgamate/tilegenerator/Collage.hpp	/^	class Collage : public TileGenerator $/;"	c	namespace:amalgamate	inherits:TileGenerator
+amalgamate::Collage::constructRect	amalgamate/tilegenerator/Collage.hpp	/^		Rect constructRect(Edge edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge edge)
+amalgamate::Collage::drawBuf	amalgamate/tilegenerator/Collage.hpp	/^		bool drawBuf(int x, int y) $/;"	f	class:amalgamate::Collage	access:private	signature:(int x, int y)
+amalgamate::Collage::drawBufSum	amalgamate/tilegenerator/Collage.hpp	/^		int drawBufSum(Rect& rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect& rect)
+amalgamate::Collage::drawRect	amalgamate/tilegenerator/Collage.hpp	/^		void drawRect(Rect rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect rect)
+amalgamate::Collage::drawnBuf	amalgamate/tilegenerator/Collage.hpp	/^		vector<bool> drawnBuf;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::edgeBuf	amalgamate/tilegenerator/Collage.hpp	/^		vector<u8> edgeBuf;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::edgeOnLine	amalgamate/tilegenerator/Collage.hpp	/^		void edgeOnLine(vector<int> line, int& a, int& b, int& edgeValue)$/;"	f	class:amalgamate::Collage	access:private	signature:(vector<int> line, int& a, int& b, int& edgeValue)
+amalgamate::Collage::foundEdge	amalgamate/tilegenerator/Collage.hpp	/^		bool foundEdge(Edge& edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge& edge)
+amalgamate::Collage::genTiles	amalgamate/tilegenerator/Collage.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::Collage	access:public	signature:(Image& img, TileList* tileList)
+amalgamate::Collage::keepInConstraints	amalgamate/tilegenerator/Collage.hpp	/^		void keepInConstraints(Rect& rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect& rect)
+amalgamate::Collage::maxAspect_	amalgamate/tilegenerator/Collage.hpp	/^		float maxAspect_;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::maxSize	amalgamate/tilegenerator/Collage.hpp	/^		Geometry minSize, maxSize;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::minSize	amalgamate/tilegenerator/Collage.hpp	/^		Geometry minSize, maxSize;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::nameString	amalgamate/tilegenerator/Collage.hpp	/^		string nameString() { return string("Collage"); }$/;"	f	class:amalgamate::Collage	access:public	signature:()
+amalgamate::Collage::placeFirstRect	amalgamate/tilegenerator/Collage.hpp	/^		Rect placeFirstRect()$/;"	f	class:amalgamate::Collage	access:private	signature:()
+amalgamate::Collage::rectExtend	amalgamate/tilegenerator/Collage.hpp	/^		Rect rectExtend(Edge edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge edge)
+amalgamate::Collage::rectSum	amalgamate/tilegenerator/Collage.hpp	/^		int rectSum(Rect rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect rect)
+amalgamate::Collage::threshold_	amalgamate/tilegenerator/Collage.hpp	/^		int threshold_;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Collage::variation	amalgamate/tilegenerator/Collage.hpp	/^		float variation() { return variation_; }$/;"	f	class:amalgamate::Collage	access:public	signature:()
+amalgamate::Collage::variation	amalgamate/tilegenerator/Collage.hpp	/^		void variation( float _variation ) { variation_=_variation; }$/;"	f	class:amalgamate::Collage	access:public	signature:( float _variation )
+amalgamate::Collage::variation_	amalgamate/tilegenerator/Collage.hpp	/^		float variation_;$/;"	m	class:amalgamate::Collage	access:private
+amalgamate::Config	amalgamate/Config.hpp	/^	class Config {$/;"	c	namespace:amalgamate
+amalgamate::Config::Config	amalgamate/Config.hpp	/^		Config() { init(); }$/;"	f	class:amalgamate::Config	access:public	signature:()
+amalgamate::Config::Config	amalgamate/Config.hpp	/^		Config(string filename) { init(); read(filename); }$/;"	f	class:amalgamate::Config	access:public	signature:(string filename)
+amalgamate::Config::as	amalgamate/Config.hpp	/^		template <class T> T as(string key) $/;"	f	class:amalgamate::Config	access:public	signature:(string key)
+amalgamate::Config::get	amalgamate/Config.hpp	/^		string get(string key) { return parameters[key]; }$/;"	f	class:amalgamate::Config	access:public	signature:(string key)
+amalgamate::Config::init	amalgamate/Config.hpp	/^		void init()$/;"	f	class:amalgamate::Config	access:private	signature:()
+amalgamate::Config::parameters	amalgamate/Config.hpp	/^		map<string,string> parameters;$/;"	m	class:amalgamate::Config	access:private
+amalgamate::Config::print	amalgamate/Config.hpp	/^		void print()$/;"	f	class:amalgamate::Config	access:public	signature:()
+amalgamate::Config::read	amalgamate/Config.hpp	/^		void read(string filename)$/;"	f	class:amalgamate::Config	access:public	signature:(string filename)
+amalgamate::Config::set	amalgamate/Config.hpp	/^		template <typename T> void set(string key, T value) { parameters[key] = lexical_cast<string>(value); }$/;"	f	class:amalgamate::Config	access:public	signature:(string key, T value)
+amalgamate::Config::set	amalgamate/Config.hpp	/^		void set(string key, string value) { parameters[key] = value; }$/;"	f	class:amalgamate::Config	access:public	signature:(string key, string value)
+amalgamate::Database	amalgamate/Database.hpp	/^	class Database $/;"	c	namespace:amalgamate
+amalgamate::Database::Database	amalgamate/Database.hpp	/^		Database(Config* _config);$/;"	p	class:amalgamate::Database	access:public	signature:(Config* _config)
+amalgamate::Database::Database	amalgamate/Database.hpp	/^		Database(string inputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputFile)
+amalgamate::Database::HEADER	amalgamate/Database.hpp	/^		static const string HEADER;$/;"	m	class:amalgamate::Database	access:private
+amalgamate::Database::at	amalgamate/Database.hpp	/^		ImageDescriptor& at(size_t index) { return database_[index]; }$/;"	f	class:amalgamate::Database	access:public	signature:(size_t index)
+amalgamate::Database::buildDescriptors	amalgamate/Database.hpp	/^		void buildDescriptors(const vector<string>& imageFileList);$/;"	p	class:amalgamate::Database	access:private	signature:(const vector<string>& imageFileList)
+amalgamate::Database::config	amalgamate/Database.hpp	/^		Config* config() { return config_; }$/;"	f	class:amalgamate::Database	access:public	signature:()
+amalgamate::Database::config	amalgamate/Database.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::Database	access:public	signature:(Config* _config)
+amalgamate::Database::config_	amalgamate/Database.hpp	/^		Config* config_;$/;"	m	class:amalgamate::Database	access:private
+amalgamate::Database::database_	amalgamate/Database.hpp	/^		vector<ImageDescriptor> database_;$/;"	m	class:amalgamate::Database	access:private
+amalgamate::Database::generate	amalgamate/Database.hpp	/^		void generate(string inputDir, string outputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputDir, string outputFile)
+amalgamate::Database::operator []	amalgamate/Database.hpp	/^		ImageDescriptor& operator[] (size_t index) { return at(index); }$/;"	f	class:amalgamate::Database	access:public	signature:(size_t index)
+amalgamate::Database::read	amalgamate/Database.hpp	/^		void read(string inputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputFile)
+amalgamate::Database::removeSimilarDescriptors	amalgamate/Database.hpp	/^		void removeSimilarDescriptors(float threshold);$/;"	p	class:amalgamate::Database	access:public	signature:(float threshold)
+amalgamate::Database::scanDir	amalgamate/Database.hpp	/^		void scanDir(string inputDir, vector<string>* imageFileList);$/;"	p	class:amalgamate::Database	access:private	signature:(string inputDir, vector<string>* imageFileList)
+amalgamate::Database::size	amalgamate/Database.hpp	/^		size_t size() { return database_.size(); }$/;"	f	class:amalgamate::Database	access:public	signature:()
+amalgamate::Database::toString	amalgamate/Database.hpp	/^		string toString();$/;"	p	class:amalgamate::Database	access:public	signature:()
+amalgamate::Database::write	amalgamate/Database.hpp	/^		void write(string outputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string outputFile)
+amalgamate::EDGE_BOTTOM	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+amalgamate::EDGE_LEFT	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+amalgamate::EDGE_RIGHT	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+amalgamate::EDGE_TOP	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+amalgamate::Edge	amalgamate/tilegenerator/Collage.hpp	/^	struct Edge {$/;"	s	namespace:amalgamate
+amalgamate::Edge::center	amalgamate/tilegenerator/Collage.hpp	/^		Point center()$/;"	f	struct:amalgamate::Edge	access:public	signature:()
+amalgamate::Edge::edgeType	amalgamate/tilegenerator/Collage.hpp	/^		EdgeType edgeType;$/;"	m	struct:amalgamate::Edge	access:public
+amalgamate::Edge::length	amalgamate/tilegenerator/Collage.hpp	/^		int length() { int l = posB-posA; return (l>0) ? l : -l; }$/;"	f	struct:amalgamate::Edge	access:public	signature:()
+amalgamate::Edge::posA	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+amalgamate::Edge::posB	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+amalgamate::Edge::posC	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+amalgamate::Edge::set	amalgamate/tilegenerator/Collage.hpp	/^		void set(int _posA, int _posB, int _posC, EdgeType _edgeType) $/;"	f	struct:amalgamate::Edge	access:public	signature:(int _posA, int _posB, int _posC, EdgeType _edgeType)
+amalgamate::EdgeType	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	t	namespace:amalgamate	typeref:enum:amalgamate::__anon3
+amalgamate::INVALID	amalgamate/tilegenerator/Collage.hpp	/^	typedef enum { EDGE_BOTTOM, EDGE_LEFT, EDGE_RIGHT, EDGE_TOP, INVALID } EdgeType;$/;"	e	enum:amalgamate::__anon3
+amalgamate::ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^	class ImageDescriptor $/;"	c	namespace:amalgamate
+amalgamate::ImageDescriptor::ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor();$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(Image& image); $/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image)
+amalgamate::ImageDescriptor::ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(Image& image, int _width, int _height, int _offX, int _offY); $/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image, int _width, int _height, int _offX, int _offY)
+amalgamate::ImageDescriptor::ImageDescriptor	amalgamate/ImageDescriptor.hpp	/^			ImageDescriptor(string _filename);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(string _filename)
+amalgamate::ImageDescriptor::build	amalgamate/ImageDescriptor.hpp	/^			void 			build(Image& image);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image)
+amalgamate::ImageDescriptor::build	amalgamate/ImageDescriptor.hpp	/^			void 			build(Image& image, int _width, int _height, int _offX, int _offY);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image, int _width, int _height, int _offX, int _offY)
+amalgamate::ImageDescriptor::compare	amalgamate/ImageDescriptor.hpp	/^			float compare(ImageDescriptor& desc);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(ImageDescriptor& desc)
+amalgamate::ImageDescriptor::count	amalgamate/ImageDescriptor.hpp	/^			static int count; $/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::filename	amalgamate/ImageDescriptor.hpp	/^			string 			filename() 	{ return filename_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::filename	amalgamate/ImageDescriptor.hpp	/^			void 			filename(string _filename) { filename_=_filename; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:(string _filename)
+amalgamate::ImageDescriptor::filename_	amalgamate/ImageDescriptor.hpp	/^			string 		filename_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::gist	amalgamate/ImageDescriptor.hpp	/^			descriptor::GIST& 		gist() 		{ return gist_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::gist_	amalgamate/ImageDescriptor.hpp	/^			descriptor::GIST 		gist_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::height	amalgamate/ImageDescriptor.hpp	/^			int 			height() 	{ return height_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::height_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::histogramLarge	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram& 	histogramLarge() { return histogramLarge_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::histogramLarge_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram 	histogramSmall_, histogramLarge_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::histogramSmall	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram& 	histogramSmall() { return histogramSmall_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::histogramSmall_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram 	histogramSmall_, histogramLarge_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::id	amalgamate/ImageDescriptor.hpp	/^			int 			id() 		{ return id_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::id_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::offset	amalgamate/ImageDescriptor.hpp	/^			Point 			offset() 	{ return offset_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::offset_	amalgamate/ImageDescriptor.hpp	/^			Point offset_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::operator <<	amalgamate/ImageDescriptor.hpp	/^			friend Writer& operator<< (Writer& os, const ImageDescriptor& id)$/;"	f	class:amalgamate::ImageDescriptor	access:friend	signature:(Writer& os, const ImageDescriptor& id)
+amalgamate::ImageDescriptor::operator >>	amalgamate/ImageDescriptor.hpp	/^			friend Reader& operator>> (Reader& is, ImageDescriptor& id)$/;"	f	class:amalgamate::ImageDescriptor	access:friend	signature:(Reader& is, ImageDescriptor& id)
+amalgamate::ImageDescriptor::pixelDiff	amalgamate/ImageDescriptor.hpp	/^			int pixelDiff(PixelPacket a, PixelPacket b );$/;"	p	class:amalgamate::ImageDescriptor	access:private	signature:(PixelPacket a, PixelPacket b )
+amalgamate::ImageDescriptor::thumbnail	amalgamate/ImageDescriptor.hpp	/^			descriptor::Thumbnail& 	thumbnail() { return thumbnail_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::thumbnail_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Thumbnail 	thumbnail_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::toString	amalgamate/ImageDescriptor.hpp	/^			string 			toString();$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::used_	amalgamate/ImageDescriptor.hpp	/^			int 		used_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::ImageDescriptor::width	amalgamate/ImageDescriptor.hpp	/^			int 			width() 	{ return width_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+amalgamate::ImageDescriptor::width_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+amalgamate::Log	amalgamate/utils.hpp	/^	class Log $/;"	c	namespace:amalgamate
+amalgamate::Log::Log	amalgamate/utils.hpp	/^			Log( const Log& );$/;"	p	class:amalgamate::Log	access:private	signature:( const Log& )
+amalgamate::Log::Log	amalgamate/utils.hpp	/^			Log() { \/*loglevel_ = 1;*\/ };$/;"	f	class:amalgamate::Log	access:private	signature:()
+amalgamate::Log::instance	amalgamate/utils.hpp	/^			static Log& instance()$/;"	f	class:amalgamate::Log	access:public	signature:()
+amalgamate::Log::log	amalgamate/utils.hpp	/^			inline void log(string text)$/;"	f	class:amalgamate::Log	access:public	signature:(string text)
+amalgamate::Log::loglevel	amalgamate/utils.hpp	/^			static int loglevel() { return loglevel_; }$/;"	f	class:amalgamate::Log	access:public	signature:()
+amalgamate::Log::loglevel	amalgamate/utils.hpp	/^			static void loglevel(int _loglevel) { loglevel_ = (_loglevel >= 0 && _loglevel < 5) ? _loglevel : 1;  }$/;"	f	class:amalgamate::Log	access:public	signature:(int _loglevel)
+amalgamate::Log::loglevel_	amalgamate/utils.hpp	/^			static int loglevel_;$/;"	m	class:amalgamate::Log	access:private
+amalgamate::Log::operator =	amalgamate/utils.hpp	/^			Log & operator = (const Log &);$/;"	p	class:amalgamate::Log	access:private	signature:(const Log &)
+amalgamate::Match	amalgamate/Mosaic.hpp	/^	struct Match$/;"	s	namespace:amalgamate
+amalgamate::Match::Match	amalgamate/Mosaic.hpp	/^		Match() : 	result(INVALID_MATCH) {}$/;"	f	struct:amalgamate::Match	access:public	signature:()
+amalgamate::Match::desc	amalgamate/Mosaic.hpp	/^		MosaicImageDescriptor* desc;$/;"	m	struct:amalgamate::Match	access:public
+amalgamate::Match::result	amalgamate/Mosaic.hpp	/^		float result;$/;"	m	struct:amalgamate::Match	access:public
+amalgamate::MatchList	amalgamate/Mosaic.hpp	/^	class MatchList : public list<Match>$/;"	c	namespace:amalgamate	inherits:list
+amalgamate::Mosaic	amalgamate/Mosaic.hpp	/^	class Mosaic $/;"	c	namespace:amalgamate
+amalgamate::Mosaic::Mosaic	amalgamate/Mosaic.hpp	/^		Mosaic();$/;"	p	class:amalgamate::Mosaic	access:public	signature:()
+amalgamate::Mosaic::Mosaic	amalgamate/Mosaic.hpp	/^		Mosaic(Database* _database, TileList* _tileList, Config* _config);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Database* _database, TileList* _tileList, Config* _config)
+amalgamate::Mosaic::blendImage	amalgamate/Mosaic.hpp	/^		void blendImage(const Image& motif, Image& mosaic);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(const Image& motif, Image& mosaic)
+amalgamate::Mosaic::clearMatches	amalgamate/Mosaic.hpp	/^		void clearMatches();$/;"	p	class:amalgamate::Mosaic	access:private	signature:()
+amalgamate::Mosaic::config	amalgamate/Mosaic.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+amalgamate::Mosaic::config	amalgamate/Mosaic.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(Config* _config)
+amalgamate::Mosaic::config_	amalgamate/Mosaic.hpp	/^		Config* config_;$/;"	m	class:amalgamate::Mosaic	access:private
+amalgamate::Mosaic::database	amalgamate/Mosaic.hpp	/^		Database* database() 	{ return database_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+amalgamate::Mosaic::database	amalgamate/Mosaic.hpp	/^		void database(Database* _database) { database_=_database; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(Database* _database)
+amalgamate::Mosaic::database_	amalgamate/Mosaic.hpp	/^		Database* database_;$/;"	m	class:amalgamate::Mosaic	access:private
+amalgamate::Mosaic::descriptors_	amalgamate/Mosaic.hpp	/^		vector<MosaicImageDescriptor> descriptors_;$/;"	m	class:amalgamate::Mosaic	access:private
+amalgamate::Mosaic::drawTile	amalgamate/Mosaic.hpp	/^		void drawTile(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect)
+amalgamate::Mosaic::getNeighbors	amalgamate/Mosaic.hpp	/^		void getNeighbors(TileMatches& matches, int maxDist);$/;"	p	class:amalgamate::Mosaic	access:private	signature:(TileMatches& matches, int maxDist)
+amalgamate::Mosaic::matches_	amalgamate/Mosaic.hpp	/^		vector<TileMatches> matches_;$/;"	m	class:amalgamate::Mosaic	access:private
+amalgamate::Mosaic::render	amalgamate/Mosaic.hpp	/^		void render(Image& motif, Image& mosaic);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Image& motif, Image& mosaic)
+amalgamate::Mosaic::render	amalgamate/Mosaic.hpp	/^		void render(string inputFile, string outputFile);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(string inputFile, string outputFile)
+amalgamate::Mosaic::tileList	amalgamate/Mosaic.hpp	/^		TileList* tileList() 	{ return tileList_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+amalgamate::Mosaic::tileList	amalgamate/Mosaic.hpp	/^		void tileList(TileList* _tileList) { tileList_=_tileList; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(TileList* _tileList)
+amalgamate::Mosaic::tileList_	amalgamate/Mosaic.hpp	/^		TileList* tileList_;$/;"	m	class:amalgamate::Mosaic	access:private
+amalgamate::Mosaic::~Mosaic	amalgamate/Mosaic.hpp	/^		~Mosaic(); $/;"	p	class:amalgamate::Mosaic	access:public	signature:()
+amalgamate::MosaicImageDescriptor	amalgamate/Mosaic.hpp	/^	class MosaicImageDescriptor$/;"	c	namespace:amalgamate
+amalgamate::MosaicImageDescriptor::MosaicImageDescriptor	amalgamate/Mosaic.hpp	/^		MosaicImageDescriptor() : 	used_(0) {}$/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+amalgamate::MosaicImageDescriptor::desc	amalgamate/Mosaic.hpp	/^		ImageDescriptor* desc;$/;"	m	class:amalgamate::MosaicImageDescriptor	access:public
+amalgamate::MosaicImageDescriptor::used	amalgamate/Mosaic.hpp	/^		int used() { return used_; }$/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+amalgamate::MosaicImageDescriptor::usedOnceMore	amalgamate/Mosaic.hpp	/^		void usedOnceMore() { used_++; } $/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+amalgamate::MosaicImageDescriptor::used_	amalgamate/Mosaic.hpp	/^		int used_;$/;"	m	class:amalgamate::MosaicImageDescriptor	access:private
+amalgamate::ParameterTableElement	amalgamate/Config.hpp	/^	typedef pair<string,string> ParameterTableElement;$/;"	t	namespace:amalgamate
+amalgamate::Point	amalgamate/utils.hpp	/^	struct Point {$/;"	s	namespace:amalgamate
+amalgamate::Point::Point	amalgamate/utils.hpp	/^		Point() { set(0,0); }$/;"	f	struct:amalgamate::Point	access:public	signature:()
+amalgamate::Point::Point	amalgamate/utils.hpp	/^		Point(int _x, int _y) { set(_x,_y); }$/;"	f	struct:amalgamate::Point	access:public	signature:(int _x, int _y)
+amalgamate::Point::dist	amalgamate/utils.hpp	/^		int dist(const Point& p) { int dx = x-p.x, dy = y-p.y; return dx*dx + dy*dy; }$/;"	f	struct:amalgamate::Point	access:public	signature:(const Point& p)
+amalgamate::Point::set	amalgamate/utils.hpp	/^		void set(int _x , int _y) { x = _x; y = _y; };$/;"	f	struct:amalgamate::Point	access:public	signature:(int _x , int _y)
+amalgamate::Point::toString	amalgamate/utils.hpp	/^		string toString() { stringstream ss; ss << x << "|" << y; return ss.str(); }$/;"	f	struct:amalgamate::Point	access:public	signature:()
+amalgamate::Point::x	amalgamate/utils.hpp	/^		int x,y;$/;"	m	struct:amalgamate::Point	access:public
+amalgamate::Point::y	amalgamate/utils.hpp	/^		int x,y;$/;"	m	struct:amalgamate::Point	access:public
+amalgamate::Reader	amalgamate/utils.hpp	/^	class Reader {$/;"	c	namespace:amalgamate
+amalgamate::Reader::Reader	amalgamate/utils.hpp	/^			Reader(string filename) { is_.open(filename.c_str(),ios::binary| ios::in); }$/;"	f	class:amalgamate::Reader	access:public	signature:(string filename)
+amalgamate::Reader::close	amalgamate/utils.hpp	/^			void close() { is_.close(); }$/;"	f	class:amalgamate::Reader	access:public	signature:()
+amalgamate::Reader::is_	amalgamate/utils.hpp	/^			ifstream is_;$/;"	m	class:amalgamate::Reader	access:private
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader&  operator>> (int& i) { is_.read(reinterpret_cast<char*>(&i),sizeof(int)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(int& i)
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (double& d) { is_.read((char*)&d,sizeof(double)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(double& d)
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (float& f) { is_.read((char*)&f,sizeof(float)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(float& f)
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (string& s) $/;"	f	class:amalgamate::Reader	access:public	signature:(string& s)
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (u16& u) { is_.read(reinterpret_cast<char*>(&u),sizeof(u16)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(u16& u)
+amalgamate::Reader::operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (u8& u) { is_.read(reinterpret_cast<char*>(&u),sizeof(u8)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(u8& u)
+amalgamate::Rect	amalgamate/utils.hpp	/^	class Rect {$/;"	c	namespace:amalgamate
+amalgamate::Rect::Rect	amalgamate/utils.hpp	/^			Rect() { set(0,0,0,0); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::Rect	amalgamate/utils.hpp	/^			Rect(int _x1, int _y1, int _x2, int _y2) { set(_x1,_y1,_x2,_y2); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1, int _y1, int _x2, int _y2)
+amalgamate::Rect::aspect	amalgamate/utils.hpp	/^			double aspect() $/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::center	amalgamate/utils.hpp	/^			Point center() { validate(); return Point((x2()+x1())\/2,(y2()+y1())\/2); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::dim	amalgamate/utils.hpp	/^			int dim(int axis) { if (axis == X_AXIS) return width(); else return height(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+amalgamate::Rect::extendedBottom	amalgamate/utils.hpp	/^			Rect extendedBottom(int p) 	{ return Rect(x1_,y1_,x2_,y2_+p); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+amalgamate::Rect::extendedLeft	amalgamate/utils.hpp	/^			Rect extendedLeft(int p) 	{ return Rect(x1_-p,y1_,x2_,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+amalgamate::Rect::extendedRight	amalgamate/utils.hpp	/^			Rect extendedRight(int p) 	{ return Rect(x1_,y1_,x2_+p,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+amalgamate::Rect::extendedTop	amalgamate/utils.hpp	/^			Rect extendedTop(int p) 	{ return Rect(x1_,y1_-p,x2_,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+amalgamate::Rect::height	amalgamate/utils.hpp	/^			int height() { return y2()-y1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::largerThan	amalgamate/utils.hpp	/^			bool largerThan(Geometry size) { return (width()>int(size.width()) && height()>int(size.height())); }$/;"	f	class:amalgamate::Rect	access:public	signature:(Geometry size)
+amalgamate::Rect::move	amalgamate/utils.hpp	/^			void move(int x, int y) { x1_+=x; x2_+=x; y1_+=y; y2_+=y; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int x, int y)
+amalgamate::Rect::p1	amalgamate/utils.hpp	/^			int p1(int axis) { if (axis == X_AXIS) return x1(); else return y1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+amalgamate::Rect::p1	amalgamate/utils.hpp	/^			void p1(int value, int axis) { if (axis == X_AXIS) x1_ = value; else y1_ = value; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int value, int axis)
+amalgamate::Rect::p2	amalgamate/utils.hpp	/^			int p2(int axis) { if (axis == X_AXIS) return x2(); else return y2(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+amalgamate::Rect::p2	amalgamate/utils.hpp	/^			void p2(int value, int axis) { if (axis == X_AXIS) x2_ = value; else y2_ = value; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int value, int axis)
+amalgamate::Rect::set	amalgamate/utils.hpp	/^			void set(int _x1, int _y1, int _x2, int _y2)$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1, int _y1, int _x2, int _y2)
+amalgamate::Rect::smallerThan	amalgamate/utils.hpp	/^			bool smallerThan(Geometry size) { return (width()<int(size.width()) && height()<int(size.width())); }$/;"	f	class:amalgamate::Rect	access:public	signature:(Geometry size)
+amalgamate::Rect::toString	amalgamate/utils.hpp	/^			string toString() { stringstream ss; $/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::validate	amalgamate/utils.hpp	/^			inline void validate()$/;"	f	class:amalgamate::Rect	access:private	signature:()
+amalgamate::Rect::width	amalgamate/utils.hpp	/^			int width()  { return x2()-x1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::x1	amalgamate/utils.hpp	/^			int x1() { return x1_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::x1	amalgamate/utils.hpp	/^			void x1(int _x1) { x1_=_x1; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1)
+amalgamate::Rect::x1_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+amalgamate::Rect::x2	amalgamate/utils.hpp	/^			int x2() { return x2_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::x2	amalgamate/utils.hpp	/^			void x2(int _x2) { x2_=_x2; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x2)
+amalgamate::Rect::x2_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+amalgamate::Rect::y1	amalgamate/utils.hpp	/^			int y1() { return y1_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::y1	amalgamate/utils.hpp	/^			void y1(int _y1) { y1_=_y1; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _y1)
+amalgamate::Rect::y1_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+amalgamate::Rect::y2	amalgamate/utils.hpp	/^			int y2() { return y2_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+amalgamate::Rect::y2	amalgamate/utils.hpp	/^			void y2(int _y2) { y2_=_y2; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _y2)
+amalgamate::Rect::y2_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+amalgamate::ThumbMatch	amalgamate/Mosaic.hpp	/^	struct ThumbMatch : Match$/;"	s	namespace:amalgamate	inherits:Match
+amalgamate::ThumbMatch::rect	amalgamate/Mosaic.hpp	/^		Rect rect;$/;"	m	struct:amalgamate::ThumbMatch	access:public
+amalgamate::Tile	amalgamate/Tile.hpp	/^	struct Tile {$/;"	s	namespace:amalgamate
+amalgamate::Tile::__anon1::__anon2::x1	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+amalgamate::Tile::__anon1::__anon2::x2	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+amalgamate::Tile::__anon1::__anon2::y1	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+amalgamate::Tile::__anon1::__anon2::y2	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+amalgamate::Tile::__anon1::coords	amalgamate/Tile.hpp	/^			double coords[4];$/;"	m	union:amalgamate::Tile::__anon1	access:public
+amalgamate::Tile::area	amalgamate/Tile.hpp	/^		inline double area() const$/;"	f	struct:amalgamate::Tile	access:public	signature:() const
+amalgamate::Tile::fromString	amalgamate/Tile.hpp	/^		bool fromString(string str);$/;"	p	struct:amalgamate::Tile	access:public	signature:(string str)
+amalgamate::Tile::get	amalgamate/Tile.hpp	/^		Rect get(Image& img); $/;"	p	struct:amalgamate::Tile	access:public	signature:(Image& img)
+amalgamate::Tile::set	amalgamate/Tile.hpp	/^		void set(Image& img, Geometry& geom);$/;"	p	struct:amalgamate::Tile	access:public	signature:(Image& img, Geometry& geom)
+amalgamate::Tile::set	amalgamate/Tile.hpp	/^		void set(double _x1, double _y1, double _x2, double _y2);$/;"	p	struct:amalgamate::Tile	access:public	signature:(double _x1, double _y1, double _x2, double _y2)
+amalgamate::Tile::toString	amalgamate/Tile.hpp	/^		string toString();$/;"	p	struct:amalgamate::Tile	access:public	signature:()
+amalgamate::Tile::validate	amalgamate/Tile.hpp	/^		void validate() {		$/;"	f	struct:amalgamate::Tile	access:public	signature:()
+amalgamate::TileGenerator	amalgamate/TileGenerator.hpp	/^	class TileGenerator {$/;"	c	namespace:amalgamate
+amalgamate::TileGenerator::addTile	amalgamate/TileGenerator.hpp	/^		void addTile(Rect rect, Image* img, TileList* tileList)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:(Rect rect, Image* img, TileList* tileList)
+amalgamate::TileGenerator::config	amalgamate/TileGenerator.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::TileGenerator	access:public	signature:()
+amalgamate::TileGenerator::config	amalgamate/TileGenerator.hpp	/^		void config(Config* _config) $/;"	f	class:amalgamate::TileGenerator	access:public	signature:(Config* _config)
+amalgamate::TileGenerator::config_	amalgamate/TileGenerator.hpp	/^		Config* config_;$/;"	m	class:amalgamate::TileGenerator	access:protected
+amalgamate::TileGenerator::genTiles	amalgamate/TileGenerator.hpp	/^		virtual void genTiles(Image& img, TileList* tileList) = 0;$/;"	p	class:amalgamate::TileGenerator	access:public	signature:(Image& img, TileList* tileList)
+amalgamate::TileGenerator::getSum	amalgamate/TileGenerator.hpp	/^		int getSum(Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:(Rect rect, Image* img)
+amalgamate::TileGenerator::getSumColumn	amalgamate/TileGenerator.hpp	/^		int getSumColumn( int columnIdx, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int columnIdx, Rect rect, Image* img)
+amalgamate::TileGenerator::getSumLine	amalgamate/TileGenerator.hpp	/^		int getSumLine( int lineIdx, int splitAxis, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int lineIdx, int splitAxis, Rect rect, Image* img)
+amalgamate::TileGenerator::getSumRow	amalgamate/TileGenerator.hpp	/^		int getSumRow( int rowIdx, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int rowIdx, Rect rect, Image* img)
+amalgamate::TileGenerator::nameString	amalgamate/TileGenerator.hpp	/^		virtual string nameString() = 0;$/;"	p	class:amalgamate::TileGenerator	access:public	signature:()
+amalgamate::TileGenerator::size	amalgamate/TileGenerator.hpp	/^		Geometry& size() { return size_; }$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:()
+amalgamate::TileGenerator::size	amalgamate/TileGenerator.hpp	/^		void size( Geometry& _size ) { size_=_size; }$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( Geometry& _size )
+amalgamate::TileGenerator::size_	amalgamate/TileGenerator.hpp	/^		Geometry size_;$/;"	m	class:amalgamate::TileGenerator	access:protected
+amalgamate::TileList	amalgamate/TileList.hpp	/^	class TileList : public vector<Tile> {$/;"	c	namespace:amalgamate	inherits:vector
+amalgamate::TileList::TileList	amalgamate/TileList.hpp	/^		TileList(Config* _config);$/;"	p	class:amalgamate::TileList	access:public	signature:(Config* _config)
+amalgamate::TileList::TileList	amalgamate/TileList.hpp	/^		TileList(string inputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile)
+amalgamate::TileList::config	amalgamate/TileList.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::TileList	access:public	signature:()
+amalgamate::TileList::config	amalgamate/TileList.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::TileList	access:public	signature:(Config* _config)
+amalgamate::TileList::config_	amalgamate/TileList.hpp	/^		Config* config_;$/;"	m	class:amalgamate::TileList	access:private
+amalgamate::TileList::generate	amalgamate/TileList.hpp	/^		void generate(Image& image); $/;"	p	class:amalgamate::TileList	access:public	signature:(Image& image)
+amalgamate::TileList::generate	amalgamate/TileList.hpp	/^		void generate(string inputFile, string outputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile, string outputFile)
+amalgamate::TileList::read	amalgamate/TileList.hpp	/^		void read(string inputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile)
+amalgamate::TileList::tileGen	amalgamate/TileList.hpp	/^		TileGenerator* tileGen() { return tileGen_; }$/;"	f	class:amalgamate::TileList	access:public	signature:()
+amalgamate::TileList::tileGen_	amalgamate/TileList.hpp	/^		TileGenerator* tileGen_;$/;"	m	class:amalgamate::TileList	access:private
+amalgamate::TileList::visualize	amalgamate/TileList.hpp	/^		void visualize(Image& image);$/;"	p	class:amalgamate::TileList	access:public	signature:(Image& image)
+amalgamate::TileList::visualize	amalgamate/TileList.hpp	/^		void visualize(string inputImageFile, string outputImageFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputImageFile, string outputImageFile)
+amalgamate::TileList::write	amalgamate/TileList.hpp	/^		void write(string outputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string outputFile)
+amalgamate::TileMatches	amalgamate/Mosaic.hpp	/^	struct TileMatches$/;"	s	namespace:amalgamate	inherits:list
+amalgamate::TileMatches::TileMatches	amalgamate/Mosaic.hpp	/^		TileMatches( Rect _rect, ImageDescriptor* _desc );$/;"	p	struct:amalgamate::TileMatches	access:public	signature:( Rect _rect, ImageDescriptor* _desc )
+amalgamate::TileMatches::addHistSmallMatch	amalgamate/Mosaic.hpp	/^		bool addHistSmallMatch(Match& match, size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(Match& match, size_t maxCount)
+amalgamate::TileMatches::bestMatch	amalgamate/Mosaic.hpp	/^		ThumbMatch* 		bestMatch;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::desc	amalgamate/Mosaic.hpp	/^		ImageDescriptor* desc;	$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::equalNeighbors	amalgamate/Mosaic.hpp	/^		int  equalNeighbors();$/;"	p	struct:amalgamate::TileMatches	access:private	signature:()
+amalgamate::TileMatches::findGistMatches	amalgamate/Mosaic.hpp	/^		bool findGistMatches(size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(size_t maxCount)
+amalgamate::TileMatches::findHistLargeMatches	amalgamate/Mosaic.hpp	/^		bool findHistLargeMatches(size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(size_t maxCount)
+amalgamate::TileMatches::findThumbMatches	amalgamate/Mosaic.hpp	/^		void findThumbMatches();$/;"	p	struct:amalgamate::TileMatches	access:public	signature:()
+amalgamate::TileMatches::getBestMatch	amalgamate/Mosaic.hpp	/^		void getBestMatch();$/;"	p	struct:amalgamate::TileMatches	access:public	signature:()
+amalgamate::TileMatches::gistMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::histLargeMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::histSmallMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::neighbors	amalgamate/Mosaic.hpp	/^		list<TileMatches*> 	neighbors;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::rect	amalgamate/Mosaic.hpp	/^		Rect rect;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::TileMatches::thumbMatches	amalgamate/Mosaic.hpp	/^		list<ThumbMatch> 	thumbMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+amalgamate::Warp	amalgamate/tilegenerator/Warp.hpp	/^	class Warp : public TileGenerator$/;"	c	namespace:amalgamate	inherits:TileGenerator
+amalgamate::Warp::genTiles	amalgamate/tilegenerator/Warp.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::Warp	access:public	signature:(Image& img, TileList* tileList)
+amalgamate::Warp::nameString	amalgamate/tilegenerator/Warp.hpp	/^		string nameString() { return string("Warp"); }$/;"	f	class:amalgamate::Warp	access:public	signature:()
+amalgamate::Warp::size	amalgamate/tilegenerator/Warp.hpp	/^		Geometry& size() { return size_; }$/;"	f	class:amalgamate::Warp	access:public	signature:()
+amalgamate::Warp::size	amalgamate/tilegenerator/Warp.hpp	/^		void size( Geometry& _size ) { size_=_size; }$/;"	f	class:amalgamate::Warp	access:public	signature:( Geometry& _size )
+amalgamate::Warp::size_	amalgamate/tilegenerator/Warp.hpp	/^		Geometry size_;$/;"	m	class:amalgamate::Warp	access:private
+amalgamate::WarpTile	amalgamate/tilegenerator/Warp.hpp	/^	typedef pair<Tile,double> WarpTile;$/;"	t	namespace:amalgamate
+amalgamate::Writer	amalgamate/utils.hpp	/^	class Writer {$/;"	c	namespace:amalgamate
+amalgamate::Writer::Writer	amalgamate/utils.hpp	/^			Writer(string filename) { os_.open(filename.c_str(), ios::binary | ios::out); }$/;"	f	class:amalgamate::Writer	access:public	signature:(string filename)
+amalgamate::Writer::close	amalgamate/utils.hpp	/^			void close() { os_.close(); }$/;"	f	class:amalgamate::Writer	access:public	signature:()
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (double d) { os_.write((char*)&d,sizeof(double)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(double d)
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (float f) { os_.write((char*)&f,sizeof(float)); return *this; }$/;"	f	class:amalgamate::Writer	access:public	signature:(float f)
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (int i) { os_.write(reinterpret_cast<char*>(&i),sizeof(i)); return *this; }$/;"	f	class:amalgamate::Writer	access:public	signature:(int i)
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (string s) { u16 l = s.length(); (*this) << l; os_.write(s.c_str(),l); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(string s)
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (u16 u) { os_.write(reinterpret_cast<char*>(&u),sizeof(u16)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(u16 u)
+amalgamate::Writer::operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (u8 u) { os_.write(reinterpret_cast<char*>(&u),sizeof(u8)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(u8 u)
+amalgamate::Writer::os_	amalgamate/utils.hpp	/^			ofstream os_;$/;"	m	class:amalgamate::Writer	access:private
+amalgamate::config	amalgamate.hpp	/^	Config config;$/;"	m	namespace:amalgamate
+amalgamate::descriptor	amalgamate/descriptor/GIST.hpp	/^	namespace descriptor $/;"	n	namespace:amalgamate
+amalgamate::descriptor	amalgamate/descriptor/Histogram.hpp	/^	namespace descriptor $/;"	n	namespace:amalgamate
+amalgamate::descriptor	amalgamate/descriptor/Thumbnail.hpp	/^namespace descriptor $/;"	n	namespace:amalgamate
+amalgamate::descriptor	amalgamate/descriptor/YUVImage.hpp	/^	namespace descriptor$/;"	n	namespace:amalgamate
+amalgamate::descriptor::GIST	amalgamate/descriptor/GIST.hpp	/^	class GIST {$/;"	c	namespace:amalgamate::descriptor
+amalgamate::descriptor::GIST::DIRECTIONS	amalgamate/descriptor/GIST.hpp	/^			static const int DIRECTIONS;$/;"	m	class:amalgamate::descriptor::GIST	access:private
+amalgamate::descriptor::GIST::GIST	amalgamate/descriptor/GIST.hpp	/^			GIST() {}$/;"	f	class:amalgamate::descriptor::GIST	access:public	signature:()
+amalgamate::descriptor::GIST::GIST	amalgamate/descriptor/GIST.hpp	/^			GIST(YUVImage& yuvImage) { \/*build(yuvImage);*\/ }$/;"	f	class:amalgamate::descriptor::GIST	access:public	signature:(YUVImage& yuvImage)
+amalgamate::descriptor::GIST::SIZES	amalgamate/descriptor/GIST.hpp	/^			static const int SIZES;$/;"	m	class:amalgamate::descriptor::GIST	access:private
+amalgamate::descriptor::GIST::operator <<	amalgamate/descriptor/GIST.hpp	/^			friend Writer& operator<< (Writer& os, const GIST& gist)$/;"	f	class:amalgamate::descriptor::GIST	access:friend	signature:(Writer& os, const GIST& gist)
+amalgamate::descriptor::GIST::operator >>	amalgamate/descriptor/GIST.hpp	/^			friend Reader& operator>> (Reader& is, GIST& gist)$/;"	f	class:amalgamate::descriptor::GIST	access:friend	signature:(Reader& is, GIST& gist)
+amalgamate::descriptor::Histogram	amalgamate/descriptor/Histogram.hpp	/^	class Histogram {$/;"	c	namespace:amalgamate::descriptor
+amalgamate::descriptor::Histogram::Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram() { setColorRange(256);}$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:()
+amalgamate::descriptor::Histogram::Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(Image& image, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(Image& image, u16 _colorRange)
+amalgamate::descriptor::Histogram::Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(YUVImage& yuvImage, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(YUVImage& yuvImage, u16 _colorRange)
+amalgamate::descriptor::Histogram::Histogram	amalgamate/descriptor/Histogram.hpp	/^		Histogram(int _colorRange) { setColorRange(_colorRange); }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(int _colorRange)
+amalgamate::descriptor::Histogram::HistogramChannel	amalgamate/descriptor/Histogram.hpp	/^		typedef vector<u16> HistogramChannel;$/;"	t	class:amalgamate::descriptor::Histogram	access:private
+amalgamate::descriptor::Histogram::build	amalgamate/descriptor/Histogram.hpp	/^		void build(YUVImage& yuvImage, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(YUVImage& yuvImage, u16 _colorRange)
+amalgamate::descriptor::Histogram::colorRange	amalgamate/descriptor/Histogram.hpp	/^		int colorRange() { return colorRange_; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:()
+amalgamate::descriptor::Histogram::colorRange_	amalgamate/descriptor/Histogram.hpp	/^		u16 colorRange_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+amalgamate::descriptor::Histogram::compare	amalgamate/descriptor/Histogram.hpp	/^		float compare(const Histogram& hist);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(const Histogram& hist)
+amalgamate::descriptor::Histogram::operator <<	amalgamate/descriptor/Histogram.hpp	/^		friend Writer& operator<< (Writer& os, const Histogram& dh)$/;"	f	class:amalgamate::descriptor::Histogram	access:friend	signature:(Writer& os, const Histogram& dh)
+amalgamate::descriptor::Histogram::operator >>	amalgamate/descriptor/Histogram.hpp	/^		friend Reader& operator>> (Reader& is, Histogram& dh)$/;"	f	class:amalgamate::descriptor::Histogram	access:friend	signature:(Reader& is, Histogram& dh)
+amalgamate::descriptor::Histogram::setColorRange	amalgamate/descriptor/Histogram.hpp	/^		void setColorRange(int _colorRange); $/;"	p	class:amalgamate::descriptor::Histogram	access:private	signature:(int _colorRange)
+amalgamate::descriptor::Histogram::toString	amalgamate/descriptor/Histogram.hpp	/^		string toString();$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:()
+amalgamate::descriptor::Histogram::u	amalgamate/descriptor/Histogram.hpp	/^		inline u16 u(size_t idx) { return u_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+amalgamate::descriptor::Histogram::u_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+amalgamate::descriptor::Histogram::v	amalgamate/descriptor/Histogram.hpp	/^		inline u16 v(size_t idx) { return v_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+amalgamate::descriptor::Histogram::v_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+amalgamate::descriptor::Histogram::y	amalgamate/descriptor/Histogram.hpp	/^		inline u16 y(size_t idx) { return y_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+amalgamate::descriptor::Histogram::y_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+amalgamate::descriptor::Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^	class Thumbnail {$/;"	c	namespace:amalgamate::descriptor
+amalgamate::descriptor::Thumbnail::Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^			Thumbnail() {}$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+amalgamate::descriptor::Thumbnail::Thumbnail	amalgamate/descriptor/Thumbnail.hpp	/^			Thumbnail(YUVImage& yuvImage) { build(yuvImage); }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(YUVImage& yuvImage)
+amalgamate::descriptor::Thumbnail::build	amalgamate/descriptor/Thumbnail.hpp	/^			void build(YUVImage& yuvImage);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(YUVImage& yuvImage)
+amalgamate::descriptor::Thumbnail::compare	amalgamate/descriptor/Thumbnail.hpp	/^			float compare(Thumbnail& thumbnail, Rect& rect, float border = 1.0f\/6.0f);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(Thumbnail& thumbnail, Rect& rect, float border = 1.0f/6.0f)
+amalgamate::descriptor::Thumbnail::compare	amalgamate/descriptor/Thumbnail.hpp	/^			float compare(const Thumbnail& thumbnail); $/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(const Thumbnail& thumbnail)
+amalgamate::descriptor::Thumbnail::get	amalgamate/descriptor/Thumbnail.hpp	/^			PixelPacket get(int x, int y);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int x, int y)
+amalgamate::descriptor::Thumbnail::nPixels	amalgamate/descriptor/Thumbnail.hpp	/^			static const size_t nPixels = NPIXELS;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:public
+amalgamate::descriptor::Thumbnail::operator <<	amalgamate/descriptor/Thumbnail.hpp	/^			friend Writer& operator<< (Writer& os, const Thumbnail& tn)$/;"	f	class:amalgamate::descriptor::Thumbnail	access:friend	signature:(Writer& os, const Thumbnail& tn)
+amalgamate::descriptor::Thumbnail::operator >>	amalgamate/descriptor/Thumbnail.hpp	/^			friend Reader& operator>> (Reader& is, Thumbnail& tn)$/;"	f	class:amalgamate::descriptor::Thumbnail	access:friend	signature:(Reader& is, Thumbnail& tn)
+amalgamate::descriptor::Thumbnail::orgHeight	amalgamate/descriptor/Thumbnail.hpp	/^			int orgHeight() { return orgHeight_; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+amalgamate::descriptor::Thumbnail::orgHeight	amalgamate/descriptor/Thumbnail.hpp	/^			void orgHeight(int _orgHeight) { orgHeight_=_orgHeight; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int _orgHeight)
+amalgamate::descriptor::Thumbnail::orgHeight_	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth_, orgHeight_;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+amalgamate::descriptor::Thumbnail::orgWidth	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth() { return orgWidth_; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+amalgamate::descriptor::Thumbnail::orgWidth	amalgamate/descriptor/Thumbnail.hpp	/^			void orgWidth(int _orgWidth) { orgWidth_=_orgWidth; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int _orgWidth)
+amalgamate::descriptor::Thumbnail::orgWidth_	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth_, orgHeight_;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+amalgamate::descriptor::Thumbnail::pixelDiff	amalgamate/descriptor/Thumbnail.hpp	/^			int pixelDiff(PixelPacket a, PixelPacket b);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:private	signature:(PixelPacket a, PixelPacket b)
+amalgamate::descriptor::Thumbnail::u_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 u_[NPIXELS\/4];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+amalgamate::descriptor::Thumbnail::v_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 v_[NPIXELS\/4];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+amalgamate::descriptor::Thumbnail::y_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 y_[NPIXELS];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+amalgamate::descriptor::YUVImage	amalgamate/descriptor/YUVImage.hpp	/^	class YUVImage {$/;"	c	namespace:amalgamate::descriptor
+amalgamate::descriptor::YUVImage::PixBuf	amalgamate/descriptor/YUVImage.hpp	/^			typedef u8 PixBuf[IMAGE_SIZE*IMAGE_SIZE];$/;"	t	class:amalgamate::descriptor::YUVImage	access:public
+amalgamate::descriptor::YUVImage::YUVImage	amalgamate/descriptor/YUVImage.hpp	/^			YUVImage(Image& image);$/;"	p	class:amalgamate::descriptor::YUVImage	access:public	signature:(Image& image)
+amalgamate::descriptor::YUVImage::clip	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 clip(int i) { return (i < 0) ? 0 : (i > 255) ? 255 : i ; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:private	signature:(int i)
+amalgamate::descriptor::YUVImage::nPixels	amalgamate/descriptor/YUVImage.hpp	/^			static const size_t nPixels = IMAGE_SIZE*IMAGE_SIZE;$/;"	m	class:amalgamate::descriptor::YUVImage	access:public
+amalgamate::descriptor::YUVImage::u	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 u(int _x, int _y) { return u_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+amalgamate::descriptor::YUVImage::u	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 u(int idx) { return u_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+amalgamate::descriptor::YUVImage::u_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+amalgamate::descriptor::YUVImage::v	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 v(int _x, int _y) { return v_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+amalgamate::descriptor::YUVImage::v	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 v(int idx) { return v_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+amalgamate::descriptor::YUVImage::v_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+amalgamate::descriptor::YUVImage::y	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 y(int _x, int _y) { return y_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+amalgamate::descriptor::YUVImage::y	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 y(int idx) { return y_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+amalgamate::descriptor::YUVImage::y_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+amalgamate::generateDatabase	amalgamate.hpp	/^	void generateDatabase(string inputDir, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputDir, string outputFile)
+amalgamate::generateMosaic	amalgamate.hpp	/^	void generateMosaic(string inputFile, string outputFile, $/;"	f	namespace:amalgamate	signature:(string inputFile, string outputFile, string tileListFile, string databaseFile)
+amalgamate::generateTileList	amalgamate.hpp	/^	void generateTileList(string inputFile, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputFile, string outputFile)
+amalgamate::loadConfigFile	amalgamate.hpp	/^	void loadConfigFile(string configFileName) $/;"	f	namespace:amalgamate	signature:(string configFileName)
+amalgamate::parameterTable	amalgamate/Config.hpp	/^	static set<ParameterTableElement>& parameterTable()$/;"	f	namespace:amalgamate	signature:()
+amalgamate::tilesgenerator	amalgamate/tilegenerator/Regular.hpp	/^	namespace tilesgenerator $/;"	n	namespace:amalgamate
+amalgamate::tilesgenerator::Regular	amalgamate/tilegenerator/Regular.hpp	/^	class Regular : public TileGenerator 	$/;"	c	namespace:amalgamate::tilesgenerator	inherits:TileGenerator
+amalgamate::tilesgenerator::Regular::genTiles	amalgamate/tilegenerator/Regular.hpp	/^		void genTiles(Image& img, TileList* tileList)	$/;"	f	class:amalgamate::tilesgenerator::Regular	access:public	signature:(Image& img, TileList* tileList)
+amalgamate::tilesgenerator::Regular::nameString	amalgamate/tilegenerator/Regular.hpp	/^		string nameString() { return string("Regular"); }$/;"	f	class:amalgamate::tilesgenerator::Regular	access:public	signature:()
+amalgamate::u16	amalgamate/utils.hpp	/^	typedef unsigned short u16;$/;"	t	namespace:amalgamate
+amalgamate::u8	amalgamate/utils.hpp	/^	typedef unsigned char u8;$/;"	t	namespace:amalgamate
+amalgamate::visualizeTileList	amalgamate.hpp	/^	void visualizeTileList(string inputFile, string tileListFile, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputFile, string tileListFile, string outputFile)
+area	amalgamate/Tile.hpp	/^		inline double area() const$/;"	f	struct:amalgamate::Tile	access:public	signature:() const
+as	amalgamate/Config.hpp	/^		template <class T> T as(string key) $/;"	f	class:amalgamate::Config	access:public	signature:(string key)
+aspect	amalgamate/utils.hpp	/^			double aspect() $/;"	f	class:amalgamate::Rect	access:public	signature:()
+at	amalgamate/Database.hpp	/^		ImageDescriptor& at(size_t index) { return database_[index]; }$/;"	f	class:amalgamate::Database	access:public	signature:(size_t index)
+bestMatch	amalgamate/Mosaic.hpp	/^		ThumbMatch* 		bestMatch;$/;"	m	struct:amalgamate::TileMatches	access:public
+blendImage	amalgamate/Mosaic.hpp	/^		void blendImage(const Image& motif, Image& mosaic);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(const Image& motif, Image& mosaic)
+bspTree	amalgamate/tilegenerator/BSPTree.hpp	/^		void bspTree(Rect rect, Image* img, TileList* tileList)$/;"	f	class:amalgamate::BSPTree	access:private	signature:(Rect rect, Image* img, TileList* tileList)
+build	amalgamate/ImageDescriptor.hpp	/^			void 			build(Image& image);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image)
+build	amalgamate/ImageDescriptor.hpp	/^			void 			build(Image& image, int _width, int _height, int _offX, int _offY);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(Image& image, int _width, int _height, int _offX, int _offY)
+build	amalgamate/descriptor/Histogram.hpp	/^		void build(YUVImage& yuvImage, u16 _colorRange);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(YUVImage& yuvImage, u16 _colorRange)
+build	amalgamate/descriptor/Thumbnail.hpp	/^			void build(YUVImage& yuvImage);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(YUVImage& yuvImage)
+buildDescriptors	amalgamate/Database.hpp	/^		void buildDescriptors(const vector<string>& imageFileList);$/;"	p	class:amalgamate::Database	access:private	signature:(const vector<string>& imageFileList)
+center	amalgamate/tilegenerator/Collage.hpp	/^		Point center()$/;"	f	struct:amalgamate::Edge	access:public	signature:()
+center	amalgamate/utils.hpp	/^			Point center() { validate(); return Point((x2()+x1())\/2,(y2()+y1())\/2); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+clearMatches	amalgamate/Mosaic.hpp	/^		void clearMatches();$/;"	p	class:amalgamate::Mosaic	access:private	signature:()
+clip	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 clip(int i) { return (i < 0) ? 0 : (i > 255) ? 255 : i ; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:private	signature:(int i)
+close	amalgamate/utils.hpp	/^			void close() { is_.close(); }$/;"	f	class:amalgamate::Reader	access:public	signature:()
+close	amalgamate/utils.hpp	/^			void close() { os_.close(); }$/;"	f	class:amalgamate::Writer	access:public	signature:()
+colorRange	amalgamate/descriptor/Histogram.hpp	/^		int colorRange() { return colorRange_; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:()
+colorRange_	amalgamate/descriptor/Histogram.hpp	/^		u16 colorRange_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+compare	amalgamate/ImageDescriptor.hpp	/^			float compare(ImageDescriptor& desc);$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:(ImageDescriptor& desc)
+compare	amalgamate/descriptor/Histogram.hpp	/^		float compare(const Histogram& hist);$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:(const Histogram& hist)
+compare	amalgamate/descriptor/Thumbnail.hpp	/^			float compare(Thumbnail& thumbnail, Rect& rect, float border = 1.0f\/6.0f);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(Thumbnail& thumbnail, Rect& rect, float border = 1.0f/6.0f)
+compare	amalgamate/descriptor/Thumbnail.hpp	/^			float compare(const Thumbnail& thumbnail); $/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(const Thumbnail& thumbnail)
+config	amalgamate.hpp	/^	Config config;$/;"	m	namespace:amalgamate
+config	amalgamate/Database.hpp	/^		Config* config() { return config_; }$/;"	f	class:amalgamate::Database	access:public	signature:()
+config	amalgamate/Database.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::Database	access:public	signature:(Config* _config)
+config	amalgamate/Mosaic.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+config	amalgamate/Mosaic.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(Config* _config)
+config	amalgamate/TileGenerator.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::TileGenerator	access:public	signature:()
+config	amalgamate/TileGenerator.hpp	/^		void config(Config* _config) $/;"	f	class:amalgamate::TileGenerator	access:public	signature:(Config* _config)
+config	amalgamate/TileList.hpp	/^		Config* config() 		{ return config_; }$/;"	f	class:amalgamate::TileList	access:public	signature:()
+config	amalgamate/TileList.hpp	/^		void config(Config* _config) { config_=_config; }$/;"	f	class:amalgamate::TileList	access:public	signature:(Config* _config)
+config_	amalgamate/Database.hpp	/^		Config* config_;$/;"	m	class:amalgamate::Database	access:private
+config_	amalgamate/Mosaic.hpp	/^		Config* config_;$/;"	m	class:amalgamate::Mosaic	access:private
+config_	amalgamate/TileGenerator.hpp	/^		Config* config_;$/;"	m	class:amalgamate::TileGenerator	access:protected
+config_	amalgamate/TileList.hpp	/^		Config* config_;$/;"	m	class:amalgamate::TileList	access:private
+constructRect	amalgamate/tilegenerator/Collage.hpp	/^		Rect constructRect(Edge edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge edge)
+coords	amalgamate/Tile.hpp	/^			double coords[4];$/;"	m	union:amalgamate::Tile::__anon1	access:public
+count	amalgamate/ImageDescriptor.hpp	/^			static int count; $/;"	m	class:amalgamate::ImageDescriptor	access:private
+database	amalgamate/Mosaic.hpp	/^		Database* database() 	{ return database_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+database	amalgamate/Mosaic.hpp	/^		void database(Database* _database) { database_=_database; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(Database* _database)
+database_	amalgamate/Database.hpp	/^		vector<ImageDescriptor> database_;$/;"	m	class:amalgamate::Database	access:private
+database_	amalgamate/Mosaic.hpp	/^		Database* database_;$/;"	m	class:amalgamate::Mosaic	access:private
+desc	amalgamate/Mosaic.hpp	/^		ImageDescriptor* desc;	$/;"	m	struct:amalgamate::TileMatches	access:public
+desc	amalgamate/Mosaic.hpp	/^		ImageDescriptor* desc;$/;"	m	class:amalgamate::MosaicImageDescriptor	access:public
+desc	amalgamate/Mosaic.hpp	/^		MosaicImageDescriptor* desc;$/;"	m	struct:amalgamate::Match	access:public
+descriptor	amalgamate/descriptor/GIST.hpp	/^	namespace descriptor $/;"	n	namespace:amalgamate
+descriptor	amalgamate/descriptor/Histogram.hpp	/^	namespace descriptor $/;"	n	namespace:amalgamate
+descriptor	amalgamate/descriptor/Thumbnail.hpp	/^namespace descriptor $/;"	n	namespace:amalgamate
+descriptor	amalgamate/descriptor/YUVImage.hpp	/^	namespace descriptor$/;"	n	namespace:amalgamate
+descriptors_	amalgamate/Mosaic.hpp	/^		vector<MosaicImageDescriptor> descriptors_;$/;"	m	class:amalgamate::Mosaic	access:private
+dim	amalgamate/utils.hpp	/^			int dim(int axis) { if (axis == X_AXIS) return width(); else return height(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+dist	amalgamate/utils.hpp	/^		int dist(const Point& p) { int dx = x-p.x, dy = y-p.y; return dx*dx + dy*dy; }$/;"	f	struct:amalgamate::Point	access:public	signature:(const Point& p)
+drawBuf	amalgamate/tilegenerator/Collage.hpp	/^		bool drawBuf(int x, int y) $/;"	f	class:amalgamate::Collage	access:private	signature:(int x, int y)
+drawBufSum	amalgamate/tilegenerator/Collage.hpp	/^		int drawBufSum(Rect& rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect& rect)
+drawRect	amalgamate/tilegenerator/Collage.hpp	/^		void drawRect(Rect rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect rect)
+drawTile	amalgamate/Mosaic.hpp	/^		void drawTile(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect)
+drawnBuf	amalgamate/tilegenerator/Collage.hpp	/^		vector<bool> drawnBuf;$/;"	m	class:amalgamate::Collage	access:private
+edgeBuf	amalgamate/tilegenerator/Collage.hpp	/^		vector<u8> edgeBuf;$/;"	m	class:amalgamate::Collage	access:private
+edgeOnLine	amalgamate/tilegenerator/Collage.hpp	/^		void edgeOnLine(vector<int> line, int& a, int& b, int& edgeValue)$/;"	f	class:amalgamate::Collage	access:private	signature:(vector<int> line, int& a, int& b, int& edgeValue)
+edgeType	amalgamate/tilegenerator/Collage.hpp	/^		EdgeType edgeType;$/;"	m	struct:amalgamate::Edge	access:public
+equalNeighbors	amalgamate/Mosaic.hpp	/^		int  equalNeighbors();$/;"	p	struct:amalgamate::TileMatches	access:private	signature:()
+extendedBottom	amalgamate/utils.hpp	/^			Rect extendedBottom(int p) 	{ return Rect(x1_,y1_,x2_,y2_+p); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+extendedLeft	amalgamate/utils.hpp	/^			Rect extendedLeft(int p) 	{ return Rect(x1_-p,y1_,x2_,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+extendedRight	amalgamate/utils.hpp	/^			Rect extendedRight(int p) 	{ return Rect(x1_,y1_,x2_+p,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+extendedTop	amalgamate/utils.hpp	/^			Rect extendedTop(int p) 	{ return Rect(x1_,y1_-p,x2_,y2_); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int p)
+filename	amalgamate/ImageDescriptor.hpp	/^			string 			filename() 	{ return filename_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+filename	amalgamate/ImageDescriptor.hpp	/^			void 			filename(string _filename) { filename_=_filename; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:(string _filename)
+filename_	amalgamate/ImageDescriptor.hpp	/^			string 		filename_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+findGistMatches	amalgamate/Mosaic.hpp	/^		bool findGistMatches(size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(size_t maxCount)
+findHistLargeMatches	amalgamate/Mosaic.hpp	/^		bool findHistLargeMatches(size_t maxCount);$/;"	p	struct:amalgamate::TileMatches	access:public	signature:(size_t maxCount)
+findThumbMatches	amalgamate/Mosaic.hpp	/^		void findThumbMatches();$/;"	p	struct:amalgamate::TileMatches	access:public	signature:()
+foundEdge	amalgamate/tilegenerator/Collage.hpp	/^		bool foundEdge(Edge& edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge& edge)
+fromString	amalgamate/Tile.hpp	/^		bool fromString(string str);$/;"	p	struct:amalgamate::Tile	access:public	signature:(string str)
+genTiles	amalgamate/TileGenerator.hpp	/^		virtual void genTiles(Image& img, TileList* tileList) = 0;$/;"	p	class:amalgamate::TileGenerator	access:public	signature:(Image& img, TileList* tileList)
+genTiles	amalgamate/tilegenerator/BSPTree.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::BSPTree	access:public	signature:(Image& img, TileList* tileList)
+genTiles	amalgamate/tilegenerator/Collage.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::Collage	access:public	signature:(Image& img, TileList* tileList)
+genTiles	amalgamate/tilegenerator/Regular.hpp	/^		void genTiles(Image& img, TileList* tileList)	$/;"	f	class:amalgamate::tilesgenerator::Regular	access:public	signature:(Image& img, TileList* tileList)
+genTiles	amalgamate/tilegenerator/Warp.hpp	/^		void genTiles(Image& img, TileList* tileList)$/;"	f	class:amalgamate::Warp	access:public	signature:(Image& img, TileList* tileList)
+generate	amalgamate/Database.hpp	/^		void generate(string inputDir, string outputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputDir, string outputFile)
+generate	amalgamate/TileList.hpp	/^		void generate(Image& image); $/;"	p	class:amalgamate::TileList	access:public	signature:(Image& image)
+generate	amalgamate/TileList.hpp	/^		void generate(string inputFile, string outputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile, string outputFile)
+generateDatabase	amalgamate.hpp	/^	void generateDatabase(string inputDir, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputDir, string outputFile)
+generateMosaic	amalgamate.hpp	/^	void generateMosaic(string inputFile, string outputFile, $/;"	f	namespace:amalgamate	signature:(string inputFile, string outputFile, string tileListFile, string databaseFile)
+generateTileList	amalgamate.hpp	/^	void generateTileList(string inputFile, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputFile, string outputFile)
+get	amalgamate/Config.hpp	/^		string get(string key) { return parameters[key]; }$/;"	f	class:amalgamate::Config	access:public	signature:(string key)
+get	amalgamate/Tile.hpp	/^		Rect get(Image& img); $/;"	p	struct:amalgamate::Tile	access:public	signature:(Image& img)
+get	amalgamate/descriptor/Thumbnail.hpp	/^			PixelPacket get(int x, int y);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int x, int y)
+getBestMatch	amalgamate/Mosaic.hpp	/^		void getBestMatch();$/;"	p	struct:amalgamate::TileMatches	access:public	signature:()
+getNeighbors	amalgamate/Mosaic.hpp	/^		void getNeighbors(TileMatches& matches, int maxDist);$/;"	p	class:amalgamate::Mosaic	access:private	signature:(TileMatches& matches, int maxDist)
+getSum	amalgamate/TileGenerator.hpp	/^		int getSum(Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:(Rect rect, Image* img)
+getSumColumn	amalgamate/TileGenerator.hpp	/^		int getSumColumn( int columnIdx, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int columnIdx, Rect rect, Image* img)
+getSumLine	amalgamate/TileGenerator.hpp	/^		int getSumLine( int lineIdx, int splitAxis, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int lineIdx, int splitAxis, Rect rect, Image* img)
+getSumRow	amalgamate/TileGenerator.hpp	/^		int getSumRow( int rowIdx, Rect rect, Image* img)$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( int rowIdx, Rect rect, Image* img)
+gist	amalgamate/ImageDescriptor.hpp	/^			descriptor::GIST& 		gist() 		{ return gist_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+gistMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+gist_	amalgamate/ImageDescriptor.hpp	/^			descriptor::GIST 		gist_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+height	amalgamate/ImageDescriptor.hpp	/^			int 			height() 	{ return height_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+height	amalgamate/utils.hpp	/^			int height() { return y2()-y1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+height_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+histLargeMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+histSmallMatches	amalgamate/Mosaic.hpp	/^		MatchList			histSmallMatches, histLargeMatches, gistMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+histogramLarge	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram& 	histogramLarge() { return histogramLarge_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+histogramLarge_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram 	histogramSmall_, histogramLarge_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+histogramSmall	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram& 	histogramSmall() { return histogramSmall_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+histogramSmall_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Histogram 	histogramSmall_, histogramLarge_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+id	amalgamate/ImageDescriptor.hpp	/^			int 			id() 		{ return id_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+id_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+init	amalgamate/Config.hpp	/^		void init()$/;"	f	class:amalgamate::Config	access:private	signature:()
+instance	amalgamate/utils.hpp	/^			static Log& instance()$/;"	f	class:amalgamate::Log	access:public	signature:()
+is_	amalgamate/utils.hpp	/^			ifstream is_;$/;"	m	class:amalgamate::Reader	access:private
+keepInConstraints	amalgamate/tilegenerator/Collage.hpp	/^		void keepInConstraints(Rect& rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect& rect)
+largerThan	amalgamate/utils.hpp	/^			bool largerThan(Geometry size) { return (width()>int(size.width()) && height()>int(size.height())); }$/;"	f	class:amalgamate::Rect	access:public	signature:(Geometry size)
+length	amalgamate/tilegenerator/Collage.hpp	/^		int length() { int l = posB-posA; return (l>0) ? l : -l; }$/;"	f	struct:amalgamate::Edge	access:public	signature:()
+loadConfigFile	amalgamate.hpp	/^	void loadConfigFile(string configFileName) $/;"	f	namespace:amalgamate	signature:(string configFileName)
+log	amalgamate/utils.hpp	/^			inline void log(string text)$/;"	f	class:amalgamate::Log	access:public	signature:(string text)
+loglevel	amalgamate/utils.hpp	/^			static int loglevel() { return loglevel_; }$/;"	f	class:amalgamate::Log	access:public	signature:()
+loglevel	amalgamate/utils.hpp	/^			static void loglevel(int _loglevel) { loglevel_ = (_loglevel >= 0 && _loglevel < 5) ? _loglevel : 1;  }$/;"	f	class:amalgamate::Log	access:public	signature:(int _loglevel)
+loglevel_	amalgamate/utils.hpp	/^			static int loglevel_;$/;"	m	class:amalgamate::Log	access:private
+matches_	amalgamate/Mosaic.hpp	/^		vector<TileMatches> matches_;$/;"	m	class:amalgamate::Mosaic	access:private
+maxAspect_	amalgamate/tilegenerator/Collage.hpp	/^		float maxAspect_;$/;"	m	class:amalgamate::Collage	access:private
+maxSize	amalgamate/tilegenerator/Collage.hpp	/^		Geometry minSize, maxSize;$/;"	m	class:amalgamate::Collage	access:private
+minSize	amalgamate/tilegenerator/Collage.hpp	/^		Geometry minSize, maxSize;$/;"	m	class:amalgamate::Collage	access:private
+move	amalgamate/utils.hpp	/^			void move(int x, int y) { x1_+=x; x2_+=x; y1_+=y; y2_+=y; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int x, int y)
+nPixels	amalgamate/descriptor/Thumbnail.hpp	/^			static const size_t nPixels = NPIXELS;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:public
+nPixels	amalgamate/descriptor/YUVImage.hpp	/^			static const size_t nPixels = IMAGE_SIZE*IMAGE_SIZE;$/;"	m	class:amalgamate::descriptor::YUVImage	access:public
+nameString	amalgamate/TileGenerator.hpp	/^		virtual string nameString() = 0;$/;"	p	class:amalgamate::TileGenerator	access:public	signature:()
+nameString	amalgamate/tilegenerator/BSPTree.hpp	/^		string nameString() { return string("BSPTree"); }$/;"	f	class:amalgamate::BSPTree	access:public	signature:()
+nameString	amalgamate/tilegenerator/Collage.hpp	/^		string nameString() { return string("Collage"); }$/;"	f	class:amalgamate::Collage	access:public	signature:()
+nameString	amalgamate/tilegenerator/Regular.hpp	/^		string nameString() { return string("Regular"); }$/;"	f	class:amalgamate::tilesgenerator::Regular	access:public	signature:()
+nameString	amalgamate/tilegenerator/Warp.hpp	/^		string nameString() { return string("Warp"); }$/;"	f	class:amalgamate::Warp	access:public	signature:()
+neighbors	amalgamate/Mosaic.hpp	/^		list<TileMatches*> 	neighbors;$/;"	m	struct:amalgamate::TileMatches	access:public
+offset	amalgamate/ImageDescriptor.hpp	/^			Point 			offset() 	{ return offset_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+offset_	amalgamate/ImageDescriptor.hpp	/^			Point offset_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+operator <<	amalgamate/ImageDescriptor.hpp	/^			friend Writer& operator<< (Writer& os, const ImageDescriptor& id)$/;"	f	class:amalgamate::ImageDescriptor	access:friend	signature:(Writer& os, const ImageDescriptor& id)
+operator <<	amalgamate/descriptor/GIST.hpp	/^			friend Writer& operator<< (Writer& os, const GIST& gist)$/;"	f	class:amalgamate::descriptor::GIST	access:friend	signature:(Writer& os, const GIST& gist)
+operator <<	amalgamate/descriptor/Histogram.hpp	/^		friend Writer& operator<< (Writer& os, const Histogram& dh)$/;"	f	class:amalgamate::descriptor::Histogram	access:friend	signature:(Writer& os, const Histogram& dh)
+operator <<	amalgamate/descriptor/Thumbnail.hpp	/^			friend Writer& operator<< (Writer& os, const Thumbnail& tn)$/;"	f	class:amalgamate::descriptor::Thumbnail	access:friend	signature:(Writer& os, const Thumbnail& tn)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (double d) { os_.write((char*)&d,sizeof(double)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(double d)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (float f) { os_.write((char*)&f,sizeof(float)); return *this; }$/;"	f	class:amalgamate::Writer	access:public	signature:(float f)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (int i) { os_.write(reinterpret_cast<char*>(&i),sizeof(i)); return *this; }$/;"	f	class:amalgamate::Writer	access:public	signature:(int i)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (string s) { u16 l = s.length(); (*this) << l; os_.write(s.c_str(),l); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(string s)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (u16 u) { os_.write(reinterpret_cast<char*>(&u),sizeof(u16)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(u16 u)
+operator <<	amalgamate/utils.hpp	/^			Writer& operator<< (u8 u) { os_.write(reinterpret_cast<char*>(&u),sizeof(u8)); return *this;  }$/;"	f	class:amalgamate::Writer	access:public	signature:(u8 u)
+operator =	amalgamate/utils.hpp	/^			Log & operator = (const Log &);$/;"	p	class:amalgamate::Log	access:private	signature:(const Log &)
+operator >>	amalgamate/ImageDescriptor.hpp	/^			friend Reader& operator>> (Reader& is, ImageDescriptor& id)$/;"	f	class:amalgamate::ImageDescriptor	access:friend	signature:(Reader& is, ImageDescriptor& id)
+operator >>	amalgamate/descriptor/GIST.hpp	/^			friend Reader& operator>> (Reader& is, GIST& gist)$/;"	f	class:amalgamate::descriptor::GIST	access:friend	signature:(Reader& is, GIST& gist)
+operator >>	amalgamate/descriptor/Histogram.hpp	/^		friend Reader& operator>> (Reader& is, Histogram& dh)$/;"	f	class:amalgamate::descriptor::Histogram	access:friend	signature:(Reader& is, Histogram& dh)
+operator >>	amalgamate/descriptor/Thumbnail.hpp	/^			friend Reader& operator>> (Reader& is, Thumbnail& tn)$/;"	f	class:amalgamate::descriptor::Thumbnail	access:friend	signature:(Reader& is, Thumbnail& tn)
+operator >>	amalgamate/utils.hpp	/^			Reader&  operator>> (int& i) { is_.read(reinterpret_cast<char*>(&i),sizeof(int)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(int& i)
+operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (double& d) { is_.read((char*)&d,sizeof(double)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(double& d)
+operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (float& f) { is_.read((char*)&f,sizeof(float)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(float& f)
+operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (string& s) $/;"	f	class:amalgamate::Reader	access:public	signature:(string& s)
+operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (u16& u) { is_.read(reinterpret_cast<char*>(&u),sizeof(u16)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(u16& u)
+operator >>	amalgamate/utils.hpp	/^			Reader& operator>> (u8& u) { is_.read(reinterpret_cast<char*>(&u),sizeof(u8)); return *this; }$/;"	f	class:amalgamate::Reader	access:public	signature:(u8& u)
+operator []	amalgamate/Database.hpp	/^		ImageDescriptor& operator[] (size_t index) { return at(index); }$/;"	f	class:amalgamate::Database	access:public	signature:(size_t index)
+orgHeight	amalgamate/descriptor/Thumbnail.hpp	/^			int orgHeight() { return orgHeight_; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+orgHeight	amalgamate/descriptor/Thumbnail.hpp	/^			void orgHeight(int _orgHeight) { orgHeight_=_orgHeight; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int _orgHeight)
+orgHeight_	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth_, orgHeight_;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+orgWidth	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth() { return orgWidth_; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:()
+orgWidth	amalgamate/descriptor/Thumbnail.hpp	/^			void orgWidth(int _orgWidth) { orgWidth_=_orgWidth; }$/;"	f	class:amalgamate::descriptor::Thumbnail	access:public	signature:(int _orgWidth)
+orgWidth_	amalgamate/descriptor/Thumbnail.hpp	/^			int orgWidth_, orgHeight_;$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+os_	amalgamate/utils.hpp	/^			ofstream os_;$/;"	m	class:amalgamate::Writer	access:private
+p1	amalgamate/utils.hpp	/^			int p1(int axis) { if (axis == X_AXIS) return x1(); else return y1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+p1	amalgamate/utils.hpp	/^			void p1(int value, int axis) { if (axis == X_AXIS) x1_ = value; else y1_ = value; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int value, int axis)
+p2	amalgamate/utils.hpp	/^			int p2(int axis) { if (axis == X_AXIS) return x2(); else return y2(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int axis)
+p2	amalgamate/utils.hpp	/^			void p2(int value, int axis) { if (axis == X_AXIS) x2_ = value; else y2_ = value; }$/;"	f	class:amalgamate::Rect	access:public	signature:(int value, int axis)
+parameterTable	amalgamate/Config.hpp	/^	static set<ParameterTableElement>& parameterTable()$/;"	f	namespace:amalgamate	signature:()
+parameters	amalgamate/Config.hpp	/^		map<string,string> parameters;$/;"	m	class:amalgamate::Config	access:private
+pixelDiff	amalgamate/ImageDescriptor.hpp	/^			int pixelDiff(PixelPacket a, PixelPacket b );$/;"	p	class:amalgamate::ImageDescriptor	access:private	signature:(PixelPacket a, PixelPacket b )
+pixelDiff	amalgamate/descriptor/Thumbnail.hpp	/^			int pixelDiff(PixelPacket a, PixelPacket b);$/;"	p	class:amalgamate::descriptor::Thumbnail	access:private	signature:(PixelPacket a, PixelPacket b)
+placeFirstRect	amalgamate/tilegenerator/Collage.hpp	/^		Rect placeFirstRect()$/;"	f	class:amalgamate::Collage	access:private	signature:()
+posA	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+posB	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+posC	amalgamate/tilegenerator/Collage.hpp	/^		int posA,posB,posC;$/;"	m	struct:amalgamate::Edge	access:public
+print	amalgamate/Config.hpp	/^		void print()$/;"	f	class:amalgamate::Config	access:public	signature:()
+read	amalgamate/Config.hpp	/^		void read(string filename)$/;"	f	class:amalgamate::Config	access:public	signature:(string filename)
+read	amalgamate/Database.hpp	/^		void read(string inputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string inputFile)
+read	amalgamate/TileList.hpp	/^		void read(string inputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputFile)
+rect	amalgamate/Mosaic.hpp	/^		Rect rect;$/;"	m	struct:amalgamate::ThumbMatch	access:public
+rect	amalgamate/Mosaic.hpp	/^		Rect rect;$/;"	m	struct:amalgamate::TileMatches	access:public
+rectExtend	amalgamate/tilegenerator/Collage.hpp	/^		Rect rectExtend(Edge edge)$/;"	f	class:amalgamate::Collage	access:private	signature:(Edge edge)
+rectSum	amalgamate/tilegenerator/Collage.hpp	/^		int rectSum(Rect rect)$/;"	f	class:amalgamate::Collage	access:private	signature:(Rect rect)
+removeSimilarDescriptors	amalgamate/Database.hpp	/^		void removeSimilarDescriptors(float threshold);$/;"	p	class:amalgamate::Database	access:public	signature:(float threshold)
+render	amalgamate/Mosaic.hpp	/^		void render(Image& motif, Image& mosaic);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(Image& motif, Image& mosaic)
+render	amalgamate/Mosaic.hpp	/^		void render(string inputFile, string outputFile);$/;"	p	class:amalgamate::Mosaic	access:public	signature:(string inputFile, string outputFile)
+result	amalgamate/Mosaic.hpp	/^		float result;$/;"	m	struct:amalgamate::Match	access:public
+scanDir	amalgamate/Database.hpp	/^		void scanDir(string inputDir, vector<string>* imageFileList);$/;"	p	class:amalgamate::Database	access:private	signature:(string inputDir, vector<string>* imageFileList)
+set	amalgamate/Config.hpp	/^		template <typename T> void set(string key, T value) { parameters[key] = lexical_cast<string>(value); }$/;"	f	class:amalgamate::Config	access:public	signature:(string key, T value)
+set	amalgamate/Config.hpp	/^		void set(string key, string value) { parameters[key] = value; }$/;"	f	class:amalgamate::Config	access:public	signature:(string key, string value)
+set	amalgamate/Tile.hpp	/^		void set(Image& img, Geometry& geom);$/;"	p	struct:amalgamate::Tile	access:public	signature:(Image& img, Geometry& geom)
+set	amalgamate/Tile.hpp	/^		void set(double _x1, double _y1, double _x2, double _y2);$/;"	p	struct:amalgamate::Tile	access:public	signature:(double _x1, double _y1, double _x2, double _y2)
+set	amalgamate/tilegenerator/Collage.hpp	/^		void set(int _posA, int _posB, int _posC, EdgeType _edgeType) $/;"	f	struct:amalgamate::Edge	access:public	signature:(int _posA, int _posB, int _posC, EdgeType _edgeType)
+set	amalgamate/utils.hpp	/^			void set(int _x1, int _y1, int _x2, int _y2)$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1, int _y1, int _x2, int _y2)
+set	amalgamate/utils.hpp	/^		void set(int _x , int _y) { x = _x; y = _y; };$/;"	f	struct:amalgamate::Point	access:public	signature:(int _x , int _y)
+setColorRange	amalgamate/descriptor/Histogram.hpp	/^		void setColorRange(int _colorRange); $/;"	p	class:amalgamate::descriptor::Histogram	access:private	signature:(int _colorRange)
+size	amalgamate/Database.hpp	/^		size_t size() { return database_.size(); }$/;"	f	class:amalgamate::Database	access:public	signature:()
+size	amalgamate/TileGenerator.hpp	/^		Geometry& size() { return size_; }$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:()
+size	amalgamate/TileGenerator.hpp	/^		void size( Geometry& _size ) { size_=_size; }$/;"	f	class:amalgamate::TileGenerator	access:protected	signature:( Geometry& _size )
+size	amalgamate/tilegenerator/Warp.hpp	/^		Geometry& size() { return size_; }$/;"	f	class:amalgamate::Warp	access:public	signature:()
+size	amalgamate/tilegenerator/Warp.hpp	/^		void size( Geometry& _size ) { size_=_size; }$/;"	f	class:amalgamate::Warp	access:public	signature:( Geometry& _size )
+size_	amalgamate/TileGenerator.hpp	/^		Geometry size_;$/;"	m	class:amalgamate::TileGenerator	access:protected
+size_	amalgamate/tilegenerator/Warp.hpp	/^		Geometry size_;$/;"	m	class:amalgamate::Warp	access:private
+smallerThan	amalgamate/utils.hpp	/^			bool smallerThan(Geometry size) { return (width()<int(size.width()) && height()<int(size.width())); }$/;"	f	class:amalgamate::Rect	access:public	signature:(Geometry size)
+threshold_	amalgamate/tilegenerator/Collage.hpp	/^		int threshold_;$/;"	m	class:amalgamate::Collage	access:private
+thumbMatches	amalgamate/Mosaic.hpp	/^		list<ThumbMatch> 	thumbMatches;$/;"	m	struct:amalgamate::TileMatches	access:public
+thumbnail	amalgamate/ImageDescriptor.hpp	/^			descriptor::Thumbnail& 	thumbnail() { return thumbnail_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+thumbnail_	amalgamate/ImageDescriptor.hpp	/^			descriptor::Thumbnail 	thumbnail_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+tileGen	amalgamate/TileList.hpp	/^		TileGenerator* tileGen() { return tileGen_; }$/;"	f	class:amalgamate::TileList	access:public	signature:()
+tileGen_	amalgamate/TileList.hpp	/^		TileGenerator* tileGen_;$/;"	m	class:amalgamate::TileList	access:private
+tileList	amalgamate/Mosaic.hpp	/^		TileList* tileList() 	{ return tileList_; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:()
+tileList	amalgamate/Mosaic.hpp	/^		void tileList(TileList* _tileList) { tileList_=_tileList; }$/;"	f	class:amalgamate::Mosaic	access:public	signature:(TileList* _tileList)
+tileList_	amalgamate/Mosaic.hpp	/^		TileList* tileList_;$/;"	m	class:amalgamate::Mosaic	access:private
+tilesgenerator	amalgamate/tilegenerator/Regular.hpp	/^	namespace tilesgenerator $/;"	n	namespace:amalgamate
+toString	amalgamate/Database.hpp	/^		string toString();$/;"	p	class:amalgamate::Database	access:public	signature:()
+toString	amalgamate/ImageDescriptor.hpp	/^			string 			toString();$/;"	p	class:amalgamate::ImageDescriptor	access:public	signature:()
+toString	amalgamate/Tile.hpp	/^		string toString();$/;"	p	struct:amalgamate::Tile	access:public	signature:()
+toString	amalgamate/descriptor/Histogram.hpp	/^		string toString();$/;"	p	class:amalgamate::descriptor::Histogram	access:public	signature:()
+toString	amalgamate/utils.hpp	/^			string toString() { stringstream ss; $/;"	f	class:amalgamate::Rect	access:public	signature:()
+toString	amalgamate/utils.hpp	/^		string toString() { stringstream ss; ss << x << "|" << y; return ss.str(); }$/;"	f	struct:amalgamate::Point	access:public	signature:()
+u	amalgamate/descriptor/Histogram.hpp	/^		inline u16 u(size_t idx) { return u_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+u	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 u(int _x, int _y) { return u_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+u	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 u(int idx) { return u_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+u16	amalgamate/utils.hpp	/^	typedef unsigned short u16;$/;"	t	namespace:amalgamate
+u8	amalgamate/utils.hpp	/^	typedef unsigned char u8;$/;"	t	namespace:amalgamate
+u_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+u_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 u_[NPIXELS\/4];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+u_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+used	amalgamate/Mosaic.hpp	/^		int used() { return used_; }$/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+usedOnceMore	amalgamate/Mosaic.hpp	/^		void usedOnceMore() { used_++; } $/;"	f	class:amalgamate::MosaicImageDescriptor	access:public	signature:()
+used_	amalgamate/ImageDescriptor.hpp	/^			int 		used_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+used_	amalgamate/Mosaic.hpp	/^		int used_;$/;"	m	class:amalgamate::MosaicImageDescriptor	access:private
+v	amalgamate/descriptor/Histogram.hpp	/^		inline u16 v(size_t idx) { return v_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+v	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 v(int _x, int _y) { return v_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+v	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 v(int idx) { return v_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+v_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+v_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 v_[NPIXELS\/4];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+v_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+validate	amalgamate/Tile.hpp	/^		void validate() {		$/;"	f	struct:amalgamate::Tile	access:public	signature:()
+validate	amalgamate/utils.hpp	/^			inline void validate()$/;"	f	class:amalgamate::Rect	access:private	signature:()
+variation	amalgamate/tilegenerator/Collage.hpp	/^		float variation() { return variation_; }$/;"	f	class:amalgamate::Collage	access:public	signature:()
+variation	amalgamate/tilegenerator/Collage.hpp	/^		void variation( float _variation ) { variation_=_variation; }$/;"	f	class:amalgamate::Collage	access:public	signature:( float _variation )
+variation_	amalgamate/tilegenerator/Collage.hpp	/^		float variation_;$/;"	m	class:amalgamate::Collage	access:private
+visualize	amalgamate/TileList.hpp	/^		void visualize(Image& image);$/;"	p	class:amalgamate::TileList	access:public	signature:(Image& image)
+visualize	amalgamate/TileList.hpp	/^		void visualize(string inputImageFile, string outputImageFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string inputImageFile, string outputImageFile)
+visualizeTileList	amalgamate.hpp	/^	void visualizeTileList(string inputFile, string tileListFile, string outputFile)$/;"	f	namespace:amalgamate	signature:(string inputFile, string tileListFile, string outputFile)
+width	amalgamate/ImageDescriptor.hpp	/^			int 			width() 	{ return width_; }$/;"	f	class:amalgamate::ImageDescriptor	access:public	signature:()
+width	amalgamate/utils.hpp	/^			int width()  { return x2()-x1(); }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+width_	amalgamate/ImageDescriptor.hpp	/^			int id_, width_, height_;$/;"	m	class:amalgamate::ImageDescriptor	access:private
+write	amalgamate/Database.hpp	/^		void write(string outputFile);$/;"	p	class:amalgamate::Database	access:public	signature:(string outputFile)
+write	amalgamate/TileList.hpp	/^		void write(string outputFile);$/;"	p	class:amalgamate::TileList	access:public	signature:(string outputFile)
+x	amalgamate/utils.hpp	/^		int x,y;$/;"	m	struct:amalgamate::Point	access:public
+x1	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+x1	amalgamate/utils.hpp	/^			int x1() { return x1_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+x1	amalgamate/utils.hpp	/^			void x1(int _x1) { x1_=_x1; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x1)
+x1_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+x2	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+x2	amalgamate/utils.hpp	/^			int x2() { return x2_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+x2	amalgamate/utils.hpp	/^			void x2(int _x2) { x2_=_x2; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _x2)
+x2_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+y	amalgamate/descriptor/Histogram.hpp	/^		inline u16 y(size_t idx) { return y_[idx]; }$/;"	f	class:amalgamate::descriptor::Histogram	access:public	signature:(size_t idx)
+y	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 y(int _x, int _y) { return y_[_y*IMAGE_SIZE+_x]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int _x, int _y)
+y	amalgamate/descriptor/YUVImage.hpp	/^			inline u8 y(int idx) { return y_[idx]; }$/;"	f	class:amalgamate::descriptor::YUVImage	access:public	signature:(int idx)
+y	amalgamate/utils.hpp	/^		int x,y;$/;"	m	struct:amalgamate::Point	access:public
+y1	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+y1	amalgamate/utils.hpp	/^			int y1() { return y1_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+y1	amalgamate/utils.hpp	/^			void y1(int _y1) { y1_=_y1; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _y1)
+y1_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+y2	amalgamate/Tile.hpp	/^			struct { double x1,y1,x2,y2; };$/;"	m	struct:amalgamate::Tile::__anon1::__anon2	access:public
+y2	amalgamate/utils.hpp	/^			int y2() { return y2_; }$/;"	f	class:amalgamate::Rect	access:public	signature:()
+y2	amalgamate/utils.hpp	/^			void y2(int _y2) { y2_=_y2; validate(); }$/;"	f	class:amalgamate::Rect	access:public	signature:(int _y2)
+y2_	amalgamate/utils.hpp	/^			int x1_, y1_, x2_, y2_; $/;"	m	class:amalgamate::Rect	access:private
+y_	amalgamate/descriptor/Histogram.hpp	/^		HistogramChannel y_, u_, v_;$/;"	m	class:amalgamate::descriptor::Histogram	access:private
+y_	amalgamate/descriptor/Thumbnail.hpp	/^			u8 y_[NPIXELS];$/;"	m	class:amalgamate::descriptor::Thumbnail	access:private
+y_	amalgamate/descriptor/YUVImage.hpp	/^			PixBuf y_,u_,v_;$/;"	m	class:amalgamate::descriptor::YUVImage	access:private
+~Mosaic	amalgamate/Mosaic.hpp	/^		~Mosaic(); $/;"	p	class:amalgamate::Mosaic	access:public	signature:()

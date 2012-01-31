@@ -1,17 +1,9 @@
 #pragma once
-#include <stdlib.h>
-#include <iostream>
-#include <Magick++.h> 
-
-#include "amalgamate/tiles.hpp"
-#include "amalgamate/database.hpp"
-#include "amalgamate/mosaic.hpp"
-
-#include "amalgamate/tilegenerators/bsptree.hpp"
-#include "amalgamate/tilegenerators/collage.hpp"
-#include "amalgamate/tilegenerators/regular.hpp"
-#include "amalgamate/tilegenerators/warp.hpp"
-#include "amalgamate/config.hpp"
+#include "amalgamate/DescriptorFilter.hpp"
+#include "amalgamate/TileList.hpp"
+#include "amalgamate/Database.hpp"
+#include "amalgamate/Mosaic.hpp"
+#include "amalgamate/Config.hpp"
 
 using namespace std;
 
@@ -22,21 +14,21 @@ namespace amalgamate
 
 	void generateDatabase(string inputDir, string outputFile)
 	{
-		cout << "Generate Database ... " << endl;
+		LOG_MSG << "Generate Database ... ";
 		Database database(&config);
 		database.generate(inputDir,outputFile);
 	}
 
 	void generateTileList(string inputFile, string outputFile)
 	{
-		cout << "Generating tile list..." << endl;
+		LOG_MSG << "Generating tile list...";
 		TileList tileList(&config);
 		tileList.generate(inputFile,outputFile); 
 	}
 
 	void visualizeTileList(string inputFile, string tileListFile, string outputFile)
 	{
-		cout << "Visualizing Tile List ... " << endl;
+		LOG_MSG << "Visualizing Tile List ... ";
 		TileList tileList(tileListFile);
 		tileList.visualize(inputFile,outputFile);
 	}
@@ -45,7 +37,7 @@ namespace amalgamate
 						string tileListFile, string databaseFile)
 	{
 
-		cout << "Generate Mosaic ... " << endl;
+		LOG_MSG << "Generate Mosaic ... ";
 		Database db(databaseFile);
 		TileList tileList(tileListFile);
 
