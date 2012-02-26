@@ -14,10 +14,13 @@ namespace amalgamate {
 
 	enum DescriptorType { DT_HISTSMALL, DT_HISTLARGE, DT_GIST, DT_THUMBNAIL, DT_ };
 
+	class StatisticInfo;
+
 	class Descriptor 
 	{
 		public:
 			Descriptor();
+			~Descriptor();
 			Descriptor(Image& image); 
 			Descriptor(Image& image, int _width, int _height, int _offX, int _offY); 
 			Descriptor(string _filename);
@@ -44,6 +47,8 @@ namespace amalgamate {
 			void 			build(Image& image, int _width, int _height, int _offX, int _offY);
 			string 			toString();
 
+			StatisticInfo* 	statInfo;
+
 			float compare(Descriptor& desc);
 
 			friend Writer& operator<< (Writer& os, const Descriptor& id)
@@ -59,6 +64,13 @@ namespace amalgamate {
 				is >> id.index_ >> id.filename_;
 				is >> id.width_ >> id.height_ >> id.offset_.x >> id.offset_.y;
 				is >> id.histogramSmall_ >> id.histogramLarge_ >> id.gist_ >> id.thumbnail_;
+
+				if (id.gist_.size() == 0)
+				{
+					LOG_WRN << "GIST has 0 size. #" << id.index_;
+				}
+
+
 				return is;
 			}
 

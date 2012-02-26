@@ -5,7 +5,10 @@
 
 #include <opencv/highgui.h>
 #include <opencv/cv.h> 
+#include <poisson/PoissonBlending.h>
+
 #include "log/Log.hpp"
+
 
 #include "amalgamate/utils.hpp"
 #include "graphcut/graph.h"
@@ -18,29 +21,48 @@ using namespace Magick;
 
 LOG_INIT;
 
-IplImage* MagickToCv(const Magick::Image& image)
+static unsigned width_ = 2048,height_ = 768,panWidth = 2048,panHeight = 768;
+static float border = 1.0f / 6.0f;
+
+typedef enum { BLEND_LINEAR, BLEND_POISSON } BlendingMode;
+
+bool sameResolution(const Image& image1, const Image& image2)
+{
+	return (image1.rows() 	 == image2.rows() && 
+			image1.columns() == image2.columns());
+}
+
+IplImage* MagickToCv(const Magick::Image& image, bool grayScale = false)
 {
 	int w = image.columns(), h = image.rows();
-	LOG_MSG << fmt("% x %") % w % h;
-	IplImage* cvImage = cvCreateImage( cvSize(w,h), IPL_DEPTH_8U, 3);
+	LOG_MSG_(3) << fmt("% x %") % w % h;
 
-	const Magick::PixelPacket* pixels = image.getConstPixels(0,0,w,h);
+	int nChannels = grayScale ? 1 : 3;
 
-	LOG_MSG << fmt("% %") % cvImage->widthStep % cvImage->nChannels; 
+	IplImage* cvImage = cvCreateImage( cvSize(w,h), IPL_DEPTH_8U, nChannels);
 
+	Image img = image;
+	if (grayScale) img.quantizeColorSpace( GRAYColorspace );
+	const Magick::PixelPacket* pixels = img.getConstPixels(0,0,w,h);
+
+	LOG_MSG_(3) << fmt("% %") % cvImage->widthStep % cvImage->nChannels; 
 	uchar * data    = (uchar*)cvImage->imageData;
-	
+
 	for (int i = 0; i < h; i++)
-	for (int j = 0; j < w; j++)
-	{
-		data[i*cvImage->widthStep+j*3 + 0]=pixels[i*w+j].blue / 256; // B
-		data[i*cvImage->widthStep+j*3 + 1]=pixels[i*w+j].green / 256; // G
-		data[i*cvImage->widthStep+j*3 + 2]=pixels[i*w+j].red / 256; // R
-	}
+		for (int j = 0; j < w; j++)
+		{
+			data[i*cvImage->widthStep+j*nChannels + 0]=pixels[i*w+j].blue / 256; // B
+			
+			if (!grayScale)
+			{
+				data[i*cvImage->widthStep+j*nChannels + 1]=pixels[i*w+j].green / 256; // G
+				data[i*cvImage->widthStep+j*nChannels + 2]=pixels[i*w+j].red / 256; // R
+			}
+		}
 	return cvImage;
 }
 
-Magick::Image CvToMagick(const IplImage* image)
+Magick::Image CvToMagick(IplImage* image)
 {
 	int w = image->width, h = image->height;
 	
@@ -48,94 +70,52 @@ Magick::Image CvToMagick(const IplImage* image)
 	mImage.modifyImage();
 	Magick::PixelPacket* pixels = mImage.getPixels(0,0,w,h);	
 
-	for (int i = 0; i < w*h; i++)
-		pixels[i] = Color( 	image->imageData[i*3+2]*256,
-							image->imageData[i*3+1]*256,
-							image->imageData[i*3]*256);
+	uchar * data    = (uchar*)image->imageData;
+
+	for (int i = 0; i < h; i++)
+		for (int j = 0; j < w; j++)
+			pixels[i*w+j] = Color( 	data[i*image->widthStep+j*3+2]*256,
+									data[i*image->widthStep+j*3+1]*256,
+									data[i*image->widthStep+j*3  ]*256);
 	mImage.syncPixels();
 	return mImage;
 }
 
-void drawImage(const Image& src, Image& dest, int offX, int offY);
+
+
+void drawOnImage(const Image& src, Image& dest, int offX, int offY)
 {
 	int w = src.columns(), h = src.rows();
-	
+
 	const PixelPacket* srcPixels = src.getConstPixels(0,0,w,h);
-	PixelPacket destPixels = dest.getPixels(0,0,dest.columns(),dest.rows());
+	PixelPacket* destPixels = dest.getPixels(0,0,dest.columns(),dest.rows());
 
 	for (int y = 0; y < h; y++)
 		for (int x = 0; x < w; x++) 
 		{
-			if (y+offY > dest.rows() || x+offX > dest.columns() ||
-				y+offY < 0 || x+offX < 0 ) continue;
+			if (y+offY >= int(dest.rows()) || 
+					x+offX >= int(dest.columns()) ||
+					y+offY < 0 || x+offX < 0 ) continue;
 
-			dest[(y+offY)*dest.columns()+x+offX] = src[y*w+x];
+			destPixels[(y+offY)*dest.columns()+x+offX] = srcPixels[y*w+x];
 		}
+
+	dest.syncPixels();
 }
 
-int templateMatching(const Image& left, const Image& right)
-{
-	Image image1CropExt( Geometry(image1Crop.columns(),image1Crop.rows()+image1Crop.rows()/4), Color(0,0,0));
-	image1CropExt.modifyImage();
-	PixelPacket* pixels = image1Crop.getPixels(0,0,image1Crop.columns(),image1Crop.rows());
-	PixelPacket* pixelsExt = image1CropExt.getPixels(0,0,image1CropExt.columns(),image1CropExt.rows());
-	
-	double m,M;
 
-	for (int i = 0; i < image1CropExt.columns()*image1CropExt.rows(); i++)
+vector<bool> graphCut(const Image& left, const Image& right)
+{
+	if (!sameResolution(left,right))
 	{
-		int pos = i-image1Crop.columns()*image1Crop.rows()/8;
-		if (pos < 0) pos = (-pos) % image1Crop.columns();
-		if (pos > image1Crop.columns()*image1Crop.rows())
-			pos = pos % image1Crop.columns() + image1Crop.columns()*(image1Crop.rows()-1);
-		pixelsExt[i] = pixels[pos];
+		LOG_ERR << fmt("Resolution differs: %x% vs. %x%") 
+			% left.columns() % left.rows() % right.columns() % right.rows(); 
+		return vector<bool>();
 	}
 
-	image1CropExt.syncPixels();
-
-	IplImage* image = MagickToCv(image1CropExt); 
-	IplImage* icon  = MagickToCv(image2Crop);
-/*
-	cvNamedWindow( "image1", 1 ); 
-	cvShowImage( "image1", image ); 
-	cvNamedWindow( "image2", 1 ); 
-	cvShowImage( "image2", icon ); 
-*/
-
-	CvPoint point1; CvPoint point2;     
-
-	int resultW = 1; 
-	int resultH = image->height - icon->height +1; 
-	IplImage* result = cvCreateImage(cvSize(resultW, resultH), IPL_DEPTH_32F, 1); 
-	cvMatchTemplate(image, icon, result, CV_TM_SQDIFF_NORMED);
-
-	float* resultData = (float*)result->imageData;
-
-	for (int i = 0; i < resultH; i++)
-	{
-	//	LOG_MSG << i << " " << resultData[i];
-		if (resultData[i] < 0) resultData[i] = -resultData[i];
-		float weight = float((i-resultH/2)*(i-resultH/2)*2.0/(resultH*resultH)); 
-		resultData[i] *= (1 + weight);
-	//	*LOG << " " << resultData[i];
-	}
-
-	cvMinMaxLoc(result, &m, &M, &point2, &point1, NULL);
-
-/*
-	cvRectangle( image, point2, 
-				cvPoint( point2.x + icon->width, point2.y + icon->height ), 
-				cvScalar( 0, 0, 255, 0 ), 1, 0, 0 ); 
-*/	
-
-	return point2.y;
-}
-
-vector<bool> graphCut(Image& left, Image& right, int offset)
-{
 	Image edges1 = left, edges2 = right;
 
-	float blurFactor = left.columns() / 50.0f;
+	float blurFactor = left.columns() / 400.0f;
 
 	edges1.quantizeColorSpace( GRAYColorspace );
 	edges1.quantize();
@@ -163,150 +143,293 @@ vector<bool> graphCut(Image& left, Image& right, int offset)
 	{
 		for (int x = 0; x < w-1; x++)
 		{
-			int pos = y-point2.y; 
-			if (pos <  0) pos = 0;
-			if (pos >= edges2.rows()) pos = edges2.rows()-1;
-			
-			int p1 = edge1Pixels[y*w+x].red;
-			int p2 = edge2Pixels[pos*w+x].red;			
-			int maxDiff = max(p1,p2);
-
-			g -> add_edge( y*w+x,y*w+x+1,   maxDiff, maxDiff );
-			g -> add_edge( y*w+x,(y+1)*w+x, maxDiff, maxDiff );
+			int pos = y*w+x;
+			int maxDiff = max(edge1Pixels[pos].red,
+					edge2Pixels[pos].red);
+			g -> add_edge( pos,pos+1, maxDiff, maxDiff );
+			g -> add_edge( pos,pos+w, maxDiff, maxDiff );
 		}
 
 		g->add_tweights( y*w , 0, 65536);
 		g->add_tweights( y*w+w-1 , 65536 ,0);
 	}
-	int flow = g -> maxflow();
+	g -> maxflow();
 
 	vector<bool> mask(w*h);
 	for (int i = 0; i < w*h; i++)
-		mask = (g->what_segment(i) == GraphType::SOURCE);
+		mask[i] = (g->what_segment(i) != GraphType::SOURCE);
 
 	delete g;
-	
+
 	return mask;
 }
 
-Image linearBlending(const Image& left, const Image& right, const vector<bool>& mask, int offset)
+Image linearBlending(const Image& left, const Image& right, const Image& mask)
 {
+	if (!sameResolution(left,right) || !sameResolution(left,mask))
+	{
+		LOG_ERR << fmt("Resolution differs: %x% vs. %x%") 
+			% left.columns() % left.rows() % right.columns() % right.rows(); 
+		return Image();
+	}
 
-	weightImage.syncPixels();
-	weightImage.gaussianBlur( 16, 16);
+	int w = left.columns(), h = left.rows();
+	float blurFactor = w / 100.0f;
 
-	weightPixels = weightImage.getPixels(0,0,w,h);
+	Image weightImage = mask;
+	weightImage.gaussianBlur( blurFactor, blurFactor);
+	PixelPacket* weightPixels = weightImage.getPixels(0,0,w,h);
+
+	const PixelPacket* leftPixels = left.getConstPixels(0,0,w,h);
+	const PixelPacket* rightPixels = right.getConstPixels(0,0,w,h);
 
 	for (int y = 0; y < h; y++)
 	{
 		for (int x = 0; x < w; x++)
 		{
-			int pos = y-point2.y; 
-			if (pos <  0) pos = 0;
-			if (pos >= edges2.rows()) pos = edges2.rows()-1;
+			int pos = y*w+x;
+			int blend = weightPixels[pos].red;
+			PixelPacket p1 = leftPixels[pos],
+						p2 = rightPixels[pos];
 
-			int blend = weightPixels[y*w+x].red;
-			PixelPacket p1 = image1Pixels[y*w+x],
-						p2 = image2Pixels[pos*w+x];
-
-			weightPixels[y*w+x].red   = BLEND_u16(p1.red  ,p2.red  ,blend);
-			weightPixels[y*w+x].green = BLEND_u16(p1.green,p2.green,blend);
-			weightPixels[y*w+x].blue  = BLEND_u16(p1.blue ,p2.blue ,blend); 
-			
+			weightPixels[pos].red   = BLEND_u16(p1.red  ,p2.red  ,blend);
+			weightPixels[pos].green = BLEND_u16(p1.green,p2.green,blend);
+			weightPixels[pos].blue  = BLEND_u16(p1.blue ,p2.blue ,blend); 
 		}
 	}
+
+//	weightImage.display();
+
+	return weightImage;
 }
 
-Image poissonBlending(const Image& left, const Image& right, const vector<bool>& mask)
-{
-	Image finalImage( Geometry(w,h), Color(0,0,0,0));
-	vector<float> finalR(w*h,0); // = finalImage.getPixels(0,0,w,h);
-	vector<float> finalG(w*h,0);
-	vector<float> finalB(w*h,0);
-
-	weightImage.syncPixels();
-	weightImage.gaussianBlur( 16, 16);
-
-	weightPixels = weightImage.getPixels(0,0,w,h);
-
-
-
-
-	for (int y = 0; y < h; y++)
+Image poissonBlending(const Image& left, const Image& right, const Image& mask)
+{ 
+	if (!sameResolution(left,right))
 	{
+		LOG_ERR << fmt("Resolution differs: %x% vs. %x%") 
+			% left.columns() % left.rows() % right.columns() % right.rows(); 
+		return Image();
+	}
+
+	int w = left.columns(), h = left.rows();
+	Image leftTmp = left;
+	PixelPacket* leftPixels = leftTmp.getPixels(0,0,w,h);
+	const PixelPacket* rightPixels = right.getConstPixels(0,0,w,h);
+
+	for (int y = 0; y < h; y++) 
 		for (int x = 0; x < w; x++)
 		{
-			int pos = y-point2.y; 
-			if (pos <  0) pos = 0;
-			if (pos >= edges2.rows()) pos = edges2.rows()-1;
-
-			int blend = weightPixels[y*w+x].red;
-			PixelPacket p1 = image1Pixels[y*w+x],
-						p2 = image2Pixels[pos*w+x];
-			// Poisson blending
-/*
-			int p = y*w+x;
-
-			if (blend==0)
+			int pos = y*w+x;
+			if (x > (w + w/6)/2)
 			{
-				finalR[p] = p1.red/65535.0; 
-				finalG[p] = p1.green/65535.0; 
-				finalB[p] = p1.blue/65535.0; 
-			} else
-			{
-				finalR[p] = finalG[p] = finalB[p] = 0;
-
-				vector<int> n1(4); // Neighbors
-				n1[0] = (x >  0)   ? y*w+x-1 : -1;
-				n1[1] = (x <= w-1) ? y*w+x+1 : -1;
-				n1[2] = (y >  0)   ? (y-1)*w+x : -1;
-				n1[3] = (y <  h-1) ? (y+1)*w+x : -1;
-
-				vector<int> n2(4); // Neighbors
-				int posP = pos*w+x;
-				n2[0] = (x >  0)   ? pos*w+x-1 : -1;
-				n2[1] = (x < w-1) ? pos*w+x+1 : -1;
-				n2[2] = (pos >  0)   ? (pos-1)*w+x : -1;
-				n2[3] = (pos <  h-1) ? (pos+1)*w+x : -1;
-
-				fmt f("% % % %");
-				LOG_MSG << f % n1[0] % n1[1] % n1[2] % n1[3];
-				LOG_MSG << f % n2[0] % n2[1] % n2[2] % n2[3];
-
-				for (int i = 0; i < 4; i++)
-				{
-					if (n1[i] == -1 || n2[i] == -1) continue;
-
-					finalR[p] += ((float)p2.red   - (float)image2Pixels[n2[i]].red)/65535.0;
-					finalG[p] += ((float)p2.green - (float)image2Pixels[n2[i]].green)/65535.0;
-					finalB[p] += ((float)p2.blue  - (float)image2Pixels[n2[i]].blue)/65535.0;
-
-					LOG_MSG << fmt("%: % % %") % i % finalR[p] % finalG[p] % finalB[p];
-					LOG_MSG << fmt("R = %, G = %, B = %") % image2Pixels[n2[i]].red % image2Pixels[n2[i]].green % image2Pixels[n2[i]].blue;
-					LOG_MSG << fmt("R = %, G = %, B = %") % p2.red % p2.green % p2.blue;
-
-					if (weightPixels[n1[i]].red==0)
-					{
-						finalR[p] += image1Pixels[n1[i]].red/65535.0f;
-						finalG[p] += image1Pixels[n1[i]].green/65535.0f;
-						finalB[p] += image1Pixels[n1[i]].blue/65535.0f;
-
-					} else
-					{
-						finalR[p] += finalR[n1[i]];
-						finalG[p] += finalG[n1[i]];
-						finalB[p] += finalB[n1[i]];
-					}
-				}
-			}*/
-			weightPixels[y*w+x].red   = BLEND_u16(p1.red  ,p2.red  ,blend);
-			weightPixels[y*w+x].green = BLEND_u16(p1.green,p2.green,blend);
-			weightPixels[y*w+x].blue  = BLEND_u16(p1.blue ,p2.blue ,blend); 
-			
+				leftPixels[pos] = rightPixels[pos];
+			}
 		}
+
+	leftTmp.syncPixels();
+	leftTmp.display();
+
+	IplImage* leftCv = MagickToCv(leftTmp);
+	IplImage* rightCv = MagickToCv(right);
+	IplImage* maskCv = MagickToCv(mask,true);
+/*
+	cvNamedWindow( "left", 1 );  cvShowImage( "left", leftCv ); 
+	cvNamedWindow( "right", 1 ); cvShowImage( "right", rightCv );  
+	cvNamedWindow( "mask", 1 ); cvShowImage( "mask", maskCv );  
+	cvWaitKey();
+*/	
+	
+	cv::Mat leftMat(leftCv);
+	cv::Mat rightMat(rightCv);
+	cv::Mat maskMat(maskCv);
+
+	cv::Mat resultImg = PoissonBlend(rightMat,leftMat,maskMat);
+
+	IplImage result = resultImg;
+	cvReleaseImage(&leftCv);
+	cvReleaseImage(&rightCv);
+	cvReleaseImage(&maskCv);
+	
+	return CvToMagick(&result);
+}
+
+
+int templateMatching(const Image& left, const Image& right, int leftOffY)
+{
+	if (left.columns() != right.columns() ||
+			left.rows() != panHeight)
+	{
+		LOG_ERR << "Width of images must be equal, height of left image must be equal to "; 
+		LOG_ERR << fmt("panorama height (=%). %x% vs. %x%") 
+			% panHeight % left.columns() % left.rows() % right.columns() % right.rows(); 
+		return -1;	
+	}
+
+	IplImage* image = MagickToCv(left); 
+	IplImage* icon  = MagickToCv(right);
+
+	//LOG->level(3);
+
+	if (LOG->level() > 2)
+	{
+		cvNamedWindow( "image1", 1 ); cvShowImage( "image1", image ); 
+		cvNamedWindow( "image2", 1 ); cvShowImage( "image2", icon );  
+		cvWaitKey();
+	}
+	CvPoint point1; CvPoint point2;     
+
+	int resultW = 1; 
+	int resultH = image->height - icon->height +1; 
+	IplImage* result = cvCreateImage(cvSize(resultW, resultH), IPL_DEPTH_32F, 1); 
+	cvMatchTemplate(image, icon, result, CV_TM_SQDIFF);
+
+	float* resultData = (float*)result->imageData;
+
+	float mid = panHeight/2 -  (left.rows()/2 + leftOffY);
+
+	for (int i = 0; i < resultH; i++)
+	{
+		LOG_MSG_(3) << i << " " << resultData[i];
+		if (resultData[i] < 0) resultData[i] = -resultData[i];
+
+		float weight = float((mid-i)*(mid-i)*8.0/(resultH*resultH)); 
+		resultData[i] *= (1 + weight);
+		*LOG << " " << resultData[i];
+	}
+
+	double m,M;
+	cvMinMaxLoc(result, &m, &M, &point2, &point1, NULL);
+
+	if (LOG->level() > 2)
+	{
+		cvRectangle( image, point2, 
+				cvPoint( point2.x + icon->width-1, point2.y + icon->height-1 ), 
+				cvScalar( 0, 0, 255, 0 ), 1, 0, 0 ); 
+		cvNamedWindow( "image1", 1 ); cvShowImage( "image1", image ); 
+		cvWaitKey();
+	}
+
+	cvReleaseImage(&image);
+	cvReleaseImage(&icon);
+	cvReleaseImage(&result);
+
+	return point2.y;
+}
+
+bool stitch(Image& pan, string prev, string next, int& stitchOffX, int& stitchOffY, BlendingMode blend = BLEND_LINEAR)
+{
+	LOG_MSG << fmt("Stitching '%' and '%' @ (%x%)") % prev % next % stitchOffX % stitchOffY;
+	LOG_MSG << fmt("Load and resize image1 '%' and image2 '%' ...") % prev % next;
+
+	Image image1(prev); 
+	image1.modifyImage();
+	image1.resize( Geometry(width_, height_)) ; 
+
+	Image image2(next);
+	image2.modifyImage();
+	image2.resize( Geometry(width_, height_)) ; 
+
+	int w = int(border*min(image1.columns(),image2.columns()));
+
+	LOG_MSG_(2) << fmt("New image sizes: %x%, %x%") 
+		% image1.columns() % image1.rows() % image2.columns() % image2.rows();
+
+	if (image1.rows() != image2.rows())
+	{
+		LOG_ERR << fmt("Height differs: %x% vs. %x%") 
+			% image1.columns() % image1.rows() % image2.columns() % image2.rows(); 
+		return false;
 	}
 
 
+	LOG_MSG_(2) << fmt("Border width = %") % w;
+
+	int off1 = (panHeight-image1.rows())/2;
+	if (stitchOffY != -1) off1 = stitchOffY;
+	int offX = image1.columns() - w;
+
+	Image image1Crop( Geometry(w,panHeight), Color(0,0,0) );
+	Image image2Crop( Geometry(w,image2.rows()), Color(0,0,0) );
+
+	drawOnImage(image1,image1Crop,w-image1.columns(),off1);
+	drawOnImage(image2,image2Crop,0,0);
+
+	int off2 = templateMatching(image1Crop,image2Crop,off1);
+	if (off2 < 0)
+	{
+		LOG_ERR << fmt("Offset is negative! offset = %") % off2;
+		return false;
+	}
+	LOG_MSG_(2) << fmt("Got offsets = (%,%)") % off1 % off2;
+
+	Image image2CropExt( Geometry(w,panHeight) , Color(0,0,0));
+	drawOnImage(image2Crop,image2CropExt,0,off2);
+
+	vector<bool> mask = graphCut(image1Crop,image2CropExt);
+	if (mask.empty())
+		{ LOG_ERR << "No mask was generated."; return false; }
+
+	int halfWidth = (image1.columns()+image2.columns())/2-w;
+	Image image1Blend( Geometry(halfWidth,panHeight), Color(0,0,0));
+	Image image2Blend( Geometry(halfWidth,panHeight), Color(0,0,0));
+	Image maskImage( Geometry(halfWidth,panHeight), Color(0,0,0) );
+	PixelPacket* maskPixels = maskImage.getPixels(0,0,halfWidth,panHeight);
+
+	for (int y = 0; y < panHeight; y++)
+		for (int x = 0; x < halfWidth; x++)
+		{
+			int pos = y*halfWidth+x;
+			
+			if (x < (halfWidth - w) / 2) { maskPixels[pos] = Color(65535,65535,65535); continue; }
+			if (x >=(halfWidth + w) / 2) { maskPixels[pos] = Color(0,0,0); continue; }
+
+			int p = int(mask[y*w + x - (halfWidth - w)/2])*65535;
+			maskPixels[pos] = Color(p,p,p);
+		}
+
+	if (blend == BLEND_POISSON)
+	{
+		for (int y = 0; y < panHeight; y++)
+			for (int x = 0; x < halfWidth; x++)
+			{
+				int pos = y*halfWidth+x;
+				int p = 65535-maskPixels[pos].red;
+				maskPixels[pos] = Color(p,p,p);			
+			}
+	}
+	drawOnImage(image1,image1Blend,(halfWidth+w)/2-image1.columns(),off1);
+	drawOnImage(image2,image2Blend,(halfWidth-w)/2,off2);
+
+//	drawOnImage(image1,image1Blend,0,off1);
+//	drawOnImage(image2,image2Blend,0,off2);
+/*	image1Blend.display();
+	image2Blend.display();
+	maskImage.display();*/
+
+	Image blendImage;
+
+	switch (blend)
+	{
+		case BLEND_LINEAR:  blendImage = linearBlending(image1Blend,image2Blend,maskImage); break;
+		case BLEND_POISSON: blendImage = poissonBlending(image1Blend,image2Blend,maskImage); break;
+	}
+
+	if (stitchOffX == 0) drawOnImage(image1,pan,stitchOffX,off1);
+	stitchOffX += offX;
+
+	if (stitchOffX+image2.columns() < width_)
+	{
+		drawOnImage(image2,pan,stitchOffX,off2);
+		drawOnImage(blendImage,pan,stitchOffX-(halfWidth-w)/2,0);
+	}
+	else
+	{	
+		stitchOffX += w;
+		return false;
+	}
+	stitchOffY = off2;
+	return true;
 }
 
 int main(int ac, char* av[])
@@ -321,15 +444,16 @@ int main(int ac, char* av[])
 	descStr << "Allowed options" << endl;
 	po::options_description cmdDesc(descStr.str());
 
-	string image1FileName, image2FileName;
-	int width = 1024,height = 768;
+	string image1FileName, image2FileName,outputImage;
 
 	cmdDesc.add_options()
 		("help", 		"Display help message.")
 		("image1", po::value<string>(&image1FileName), "Input image1")
 		("image2", po::value<string>(&image2FileName), "Input image2")
-		("width,w",  po::value<int>(&width), "Width") 
-		("height,h", po::value<int>(&height), "Height") 
+		("output,o", po::value<string>(&outputImage), "Output image")
+		("width,w",  po::value<unsigned>(&width_), "Width") 
+		("height,h", po::value<unsigned>(&height_), "Height") 
+		("poisson", "Poisson Blending")
 		;
 
 	po::variables_map vm;
@@ -339,37 +463,20 @@ int main(int ac, char* av[])
 	if (vm.count("help")) { cout << cmdDesc << endl; return 1; }
 
 	LOG_MSG << "Load images...";
-	Image image1(image1FileName); 
-	image1.modifyImage();
-	image1.resize( Geometry(width,height) );
+	int stitchPos = 0;
+	int offY = -1;
 
-	Image image2(image2FileName);
-	image2.modifyImage();
-	image2.resize( Geometry(width,height) );
-
-	int w1 = image1.columns(), h1 = image1.rows();
-	int w2 = image2.columns(), h2 = image2.rows();
+	Image final( Geometry( width_*2, height_*4/3 ), Color(0,0,0,0) );
 	
-	LOG_MSG << "Crop images...";
-	float border = 1.0/6.0;
-	Image image1Crop = image1; image1Crop.modifyImage();
-	Image image2Crop = image2; image2Crop.modifyImage();
-	image1Crop.crop( Geometry( int(w1*border),h1,int((1.0-border)*w1),0));
-	image2Crop.crop( Geometry( int(w2*border),h2,0,0));
-//	image1Crop.display(); image2Crop.display();
+	BlendingMode blend = BLEND_LINEAR;
+	if (vm.count("poisson")) blend = BLEND_POISSON;
+	
+	stitch(final,image1FileName,image2FileName,stitchPos,offY,blend);
+//	stitch(final,image1FileName,image2FileName,stitchPos,offY);
 
-	int offset = templateMatching(image1,image2);
-	vector<bool> mask = graphCut(image1,image2,offset);
-	Image blend = linearBlending(image1,image2,mask,offset);
-
-	Image final( Geometry( image1.columns() + image2.columns() - w , image2.rows() + offset),
-				 Color(0,0,0,0) );
-
-	drawImage( image1, final, 0, 0);
-	drawImage( image2, final, image1.columns()-w, offset);
-	drawImage( blend, final, image1.columns()-w, 0);
-
+	final.crop( Geometry(stitchPos+width_,panHeight,0,0) ); 
 	final.display();
+	final.write(outputImage);
 
 	return EXIT_SUCCESS;
 }

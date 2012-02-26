@@ -27,7 +27,9 @@
 #define LOGGING
 
 #define OUTPUT_TIME
-#define OUTPUT_COLOR
+#define OUTPUT_COUNTER
+#define OUTPUT_TIMER
+//#define OUTPUT_COLOR
 #define OUTPUT_MSG
 #define OUTPUT_SRC
 #define THREAD_SAFE
@@ -42,6 +44,17 @@
 #endif 
 
 using namespace std;
+
+// From:
+// http://www2.hawaii.edu/~yucheng/projects/clocks/jade-netdelay/?file=jade-netdelay.c
+static void timespec_normalize(timespec * t) 
+{ 	/* Eliminate overflows. */ 
+	while (t->tv_nsec > 1e9L) { t->tv_nsec -= 1e9L; t->tv_sec++; } 
+	/* Eliminate underflows. */ 
+	while (t->tv_nsec < 0L) { t->tv_nsec += 1e9L; t->tv_sec--; } 
+}
+
+
 
 /// @brief: Simple struct for formatting strings with parameters
 struct fmt 
@@ -118,7 +131,8 @@ struct fmt
 /// @brief: Singleton class for Logging
 class Log 
 {
-	int level_,curLevel;
+	int level_,curLevel,counter;
+	timespec ts;
 	ostream* output_;
 	static bool destroyed_;
 	static Log *_instance;
@@ -142,7 +156,6 @@ class Log
 	{
 		create();
 		new(_instance) Log;
-
 #ifdef ATEXIT_FIXED
 		atexit(killPhoenixLog);
 #endif
@@ -172,7 +185,7 @@ class Log
 #endif
 	}
 
-	template<class T> string colorStr(int color, int bold, char delimiter, T t)
+	template<class T> string colorStr(int color, int bold, char delimiter, const T& t) const
 	{
 		stringstream ss;
 #ifdef OUTPUT_COLOR
@@ -199,6 +212,12 @@ class Log
 		if (type=="MSG") color = 37; 
 		if (type=="WRN") color = 33;
 #endif 
+
+#ifdef OUTPUT_COUNTER
+		ss << colorStr(color,0,'|',counter);
+		counter++;
+#endif 
+
 #ifdef OUTPUT_TIME
 		time_t rawtime;
 		struct tm * timeinfo;
@@ -208,10 +227,22 @@ class Log
 		strftime(timeBuffer,30,"%Y/%m/%d-%H:%M:%S",timeinfo); 
 		ss << colorStr(color,0,'|',timeBuffer);		
 #endif
-	
+#ifdef OUTPUT_TIMER
+
+		timespec newTime;
+		clock_gettime(CLOCK_REALTIME,&newTime);
+		timespec difference;
+/* Add and two values. */ 
+		difference.tv_sec 	= newTime.tv_sec - ts.tv_sec; 
+		difference.tv_nsec 	= newTime.tv_nsec- ts.tv_nsec; /* Return the normalized difference. */ 
+		timespec_normalize(&difference);
+		double diff = difference.tv_sec + difference.tv_nsec/1000000000.0;
+		ss << colorStr(color,0,'|',diff);
+#endif 
+
 #ifdef OUTPUT_MSG
-		ss << colorStr(color,1,'|',type);
-		ss << colorStr(color,1,'|',_level);
+		stringstream st; st << type << _level;
+		ss << colorStr(color,1,'|',st.str());
 #endif
 
 #ifdef OUTPUT_SRC
@@ -236,10 +267,13 @@ class Log
 public:
 	void init()
 	{
+		counter = 0;
 		level(1); 
+		clock_gettime(CLOCK_REALTIME,&ts); 
 		output(&cout);
 	}
 	ostream* output() { return output_; }
+	
 	void output(ostream* _output) { output_ = _output; }
 
 	int level() { return level_; }
@@ -304,8 +338,13 @@ public:
 
 #define LOG Log::instance() 
 #define LOG_INIT Log *Log::_instance = 0; bool Log::destroyed_ = false;
+#define LOG_INIT_(logfile) Log *Log::_instance = 0; bool Log::destroyed_ = false;
+
 
 #define LOG_(lvl,type) LOG->log(__FILE__,__FUNCTION__,__LINE__,(lvl),(type))
+
+#define LOG_TIC clock_gettime(CLOCK_REALTIME, &LOG->ts); LOG_(0,"TIC") 
+#define LOG_TOC LOG_(0,"TOC") << 
 
 #define LOG_MSG LOG_(0,"MSG")
 #define LOG_MSG_(lvl) LOG_((lvl),"MSG")

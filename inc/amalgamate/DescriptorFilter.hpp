@@ -14,49 +14,74 @@ namespace amalgamate
 {
 	struct StatisticInfo
 	{
-		StatisticInfo() { init(); }
-		void init() { used = 0; excluded = false; }
+		StatisticInfo(int _used = 0, bool _excluded = false) { init(_used,_excluded); }
+		void init(int _used = 0, bool _excluded = false) { lastResult = 1.0; used = _used; excluded = _excluded; }
 		int used;
+		float lastResult;
 		bool excluded;
 	};
 
-	class Statistics : public map<Descriptor*,StatisticInfo>
+	class Statistics
 	{
 	public:
-		Statistics(float _weight = 1.0, bool _exclude = false): weight_(_weight), exclude_(_exclude) {}
+		Statistics(float _weight = 1.0, bool _exclude = false): 
+			weight_(_weight), exclude_(_exclude) {}
 
 		float weight() { return weight_; }
 		void weight(float _weight) { weight_ = _weight; }
-
-		bool exclude() { return exclude_; } 
-
+		bool exclude() { return exclude_; }
+		void exclude(Descriptor* desc, bool _exclude = true)
+		{
+			if (!desc->statInfo)
+				desc->statInfo = new StatisticInfo(0,_exclude);
+			else
+				desc->statInfo->excluded = _exclude;
+		}
 		
+		bool excluded(Descriptor* desc) 
+		{
+			if (desc) 
+				if (desc->statInfo) 
+					return desc->statInfo->excluded; 
+			return false;
+		} 
+
 	private:
-		bool exclude_;
 		float weight_;
+		bool exclude_;
 	};
 
 	struct Match
 	{
 		Match() : 	result(INVALID_MATCH) {}
-		Match(float _result, Descriptor* _desc = NULL, Rect _rect = Rect()) 
+		Match(float _result, Descriptor* _desc = NULL) 
 		{ 
 			result = _result; 
 			desc = _desc;
-			rect = _rect;
 		}
 		Descriptor* desc;
-		Rect rect;
 		float result;
 	};
 
-	class MatchList : public list<Match>
+	struct CompareMatch 
+	{
+  		bool operator() (const Match& a, const Match& b) const
+  			{return a.result<b.result;}
+	};
+
+	class Matches : public set<Match,CompareMatch>
 	{
 	public:
-		bool addMatch(Match m, size_t maxSize);
+		Matches(size_t _maxSize = 0): maxMatch(INVALID_MATCH), maxSize_(_maxSize) {}
+
+		size_t maxSize() { return maxSize_; }
+		void maxSize(size_t _maxSize) { maxSize_=_maxSize; }
+		bool addMatch(const Match& m);
 
 		Descriptors descriptors();
-		void sortMatches();
+	private:
+		float maxMatch;
+		size_t maxSize_;
 	};
 
 	struct DescriptorFilter
@@ -68,13 +93,11 @@ namespace amalgamate
 			statistics = _statistics; 
 		}
 
-		MatchList getMatches(Descriptor& desc, DescriptorType dType, 
-							 size_t maxCount, Descriptors& descs,
-							 bool sort = false);
-		MatchList getMatches(Descriptor& desc, DescriptorType dType, 
-							 Descriptors& descs, bool sort = false);
-		MatchList getMatches(Descriptor& desc, Descriptors& descs, 
-							 bool sort = false);
+		Matches getMatches(Descriptor& desc, DescriptorType dType, 
+							 size_t maxCount, Descriptors& descs);
+		Matches getMatches(Descriptor& desc, DescriptorType dType, 
+							 Descriptors& descs);
+		Matches getMatches(Descriptor& desc, Descriptors& descs);
 		Match     getBestMatch(Descriptor& desc, Descriptors& descs);
 
 		Statistics* 		statistics;

@@ -13,15 +13,17 @@ using namespace amalgamate;
 class Panorama
 {
 public:
+	typedef enum { BLEND_LINEAR, BLEND_POISSON } BlendingMode;
+
 	Panorama(int _width, int _height, Config* _config = NULL);
 
-	void generate(Image& image);
-	void generate(string outputImageFile);
+	void generate(Image& image, BlendingMode blend = BLEND_LINEAR);
+	void generate(string outputImageFile, BlendingMode blend = BLEND_LINEAR);
 
 	void generateDatabase(string inputDir, string databaseFileLeft, string databaseFileRight);
 	void generateDatabase(vector<string>& imageFileList, string databaseFileLeft, string databaseFileRight);
 
-	void loadDatabases(string databaseFileLeft, string databaseFileRight);
+	void loadDatabases(string databaseFileLeft, string databaseFileRight, bool append = false);
 
 	void config(Config* _config) 
 	{
@@ -42,20 +44,20 @@ private:
 	Database left,right;
 	Config *config_;
 
-	IplImage* MagickToCv(const Magick::Image& image);
-	void drawImage(const Image& src, Image& dest, int offX, int offY);
+	IplImage* MagickToCv(const Magick::Image& image, bool grayScale = false);
+	Magick::Image CvToMagick(IplImage* image);
+
+	void drawOnImage(const Image& src, Image& dest, int offX, int offY);
 	int templateMatching(const Image& left, const Image& right, int leftOffY = 0);
 	
 	vector<bool> graphCut(const Image& left, const Image& right);
-	Image linearBlending(const Image& left, const Image& right, const vector<bool>& mask);
-
-	Image poissonBlending(const Image& left, const Image& right, const vector<bool>& mask);
-
-	bool stitch(Image& pan, string prev, string next, int& stitchOffX, int& stitchOffY);
+	Image linearBlending(const Image& left, const Image& right, const Image& mask);
+	Image poissonBlending(Image& left, Image& right,Image& mask);
+	bool stitch(Image& pan, string prev, string next, int& stitchOffX, int& stitchOffY, BlendingMode blend = BLEND_LINEAR);
 
 	void setPanGeometry();
 
 	float border;
-	int panHeight;
-	int height_, width_;
+	unsigned panHeight;
+	unsigned height_, width_;
 };

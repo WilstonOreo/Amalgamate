@@ -1,8 +1,7 @@
 #pragma once
 
 #include <Magick++.h> 
-#include <vector>
-
+#include <boost/ptr_container/ptr_vector.hpp>
 
 #include "amalgamate/Descriptor.hpp"
 #include "amalgamate/Config.hpp"
@@ -12,13 +11,13 @@ using namespace Magick;
 
 namespace amalgamate
 {
-	class Database : public vector<Descriptor>
+	class Database : public boost::ptr_vector<Descriptor>
 	{
 	public:
 		Database(Config* _config);
 		Database(string inputFile);
 
-		void read(string inputFile);
+		void read(string inputFile, bool append = false);
 		void write(string outputFile);
 		void generate(string inputDir, string outputFile);
 		string toString();

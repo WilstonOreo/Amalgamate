@@ -10,54 +10,35 @@ using namespace boost;
 
 namespace amalgamate 
 {
-	bool MatchList::addMatch(Match m, size_t maxSize)
+	bool Matches::addMatch(const Match& m)
 	{
-		MatchList::iterator it = begin();
-		bool found = false;
+		if (m.result > maxMatch && (size()>=maxSize() || maxSize()==0)) return false;
+		insert(m);
 
-		for (size_t idx = 0; idx < size(); idx++)
-		{
-			if ((*it).result < m.result) { found = true; break; }
-			++it;
-		}
-
-		if (!found && size()>maxSize) return false;
-		insert(it,m);
-
-		if (size()>maxSize) pop_front();
+		Matches::iterator it = end(); it--;
+		if (size()>maxSize() && !empty()) erase(it);
 		return true;
 	}
 
-	Descriptors MatchList::descriptors()
+	Descriptors Matches::descriptors()
 	{
-		Descriptors result;
-		MatchList::iterator it;
-		for (it = begin(); it != end(); ++it) 
-			result.push_back(it->desc);
+		Descriptors result(size());
+		Matches::iterator it; int i = 0;
+		for (it = begin(); it != end(); ++it)
+		  		{ result[i] = it->desc; i++; }
 		return result;
-
 	}
 
-	bool compareMatch(Match a, Match b)
-	{
-		return (a.result < b.result);
-	}
-
-	void MatchList::sortMatches() 
-	{
-		sort(compareMatch);
-	}
-
-	MatchList DescriptorFilter::getMatches(Descriptor& desc, DescriptorType dType, 
-			size_t maxCount, Descriptors& descs, bool sort)
+	Matches DescriptorFilter::getMatches(Descriptor& desc, DescriptorType dType, 
+			size_t maxCount, Descriptors& descs)
 	{
 		LOG_MSG_(1) << fmt("Getting matches for %, maxCount: %") % int(dType) % maxCount;
-		MatchList result;
-		Rect rect;	
+		Matches result(maxCount);
 
 		BOOST_FOREACH( Descriptor* pDesc, descs )
 		{
-			Rect rect;
+			if (statistics)
+				if (statistics->excluded(pDesc)) continue;
 			float r = INVALID_MATCH; // r = Result from descriptor compare
 
 			switch (dType)
@@ -79,42 +60,33 @@ namespace amalgamate
 			}
 
 			if (statistics) 
-			{ 	
-				StatisticInfo* info = NULL;
-				if (!statistics->count(pDesc))
+			{
+/*				if (statistics->weight()>0.0)
 				{
-					info = new StatisticInfo;
-					statistics->insert( pair<Descriptor*,StatisticInfo>(pDesc,*info));
-				} else
-					if (statistics->count(pDesc) == 1)
+					if (pDesc->statInfo)
 					{
-						info = &statistics->at(pDesc);
+						pDesc->statInfo->used++;
+					} else
+					{
+						pDesc->statInfo = new StatisticInfo();
 					}
-					else
-						LOG_WRN << fmt("Multiple statistics for one descriptor '%'") % pDesc->filename();
-
-				if (info)
+					r *= (1.0 + pDesc->statInfo->used * statistics->weight());
+				}*/
+				if (pDesc->statInfo)
 				{
-					info->used++;
-					r *= (1.0 + info->used * statistics->weight());
-					LOG_MSG_(2) << fmt("Statistics: r = %, used = %, %") % r % info->used % statistics->weight();
-				} else
-				{
-					LOG_WRN << "No statistic info for descriptor available.";
+					if (pDesc->statInfo->lastResult < 0)
+						LOG_MSG << pDesc->statInfo->lastResult;
+					r *= pDesc->statInfo->lastResult;
 				}
 			}
-
-
-			result.addMatch(Match(r,pDesc,rect),maxCount);
+			result.addMatch(Match(r,pDesc));
 		}
-		if (sort) result.sortMatches();
 		return result;
 	}
 
 	size_t DescriptorFilter::descTypeCount(DescriptorType dType)
 	{
 		size_t count = 0;
-		
 		switch (dType)
 		{
 			case DT_HISTSMALL: 
@@ -135,24 +107,21 @@ namespace amalgamate
 				break;
 			default: break; 
 		}
-
 		return count;
 	}
 	
-	MatchList DescriptorFilter::getMatches(Descriptor& desc, DescriptorType dType, 
-			Descriptors& descs, bool sort)
+	Matches DescriptorFilter::getMatches(Descriptor& desc, DescriptorType dType, 
+			Descriptors& descs)
 	{
-		if (!config) { LOG_ERR << "No config given."; return MatchList(); }
+		if (!config) { LOG_ERR << "No config given."; return Matches(0); }
 
-		return getMatches(desc,dType,descTypeCount(dType),descs,sort);
+		return getMatches(desc,dType,descTypeCount(dType),descs);
 	}
 
-	MatchList DescriptorFilter::getMatches(Descriptor& desc, Descriptors& descs, bool sort)
+	Matches DescriptorFilter::getMatches(Descriptor& desc, Descriptors& descs)
 	{
-		if (!config) { LOG_ERR << "No config given."; return MatchList(); }
+		if (!config) { LOG_ERR << "No config given."; return Matches(); }
 
-		MatchList matches;
-		Descriptors tmpDescs = descs;
 		vector<DescriptorType> descTypes(DT_);
 
 		// Bubble sort descriptor types descending to their count
@@ -185,40 +154,40 @@ namespace amalgamate
 		if (descTypes.empty())
 		{
 			LOG_ERR << "Config error: Amount of matches is zero for all descriptor types";
-			return MatchList();
+			return Matches();
 		}
+
+		Matches matches(0);
+		Descriptors tmpDescs = descs;
 
 		BOOST_FOREACH(DescriptorType dType, descTypes)
 		{
-			matches = getMatches(desc,dType,tmpDescs,sort);
+			matches = getMatches(desc,dType,tmpDescs);	
+		if (statistics)
+			{
+				BOOST_FOREACH( const Match& m, matches )
+				{
+					if (!m.desc) continue;
+					if (!m.desc->statInfo)
+						m.desc->statInfo = new StatisticInfo();					
+					m.desc->statInfo->lastResult = m.result;
+				}
+			}
 			tmpDescs = matches.descriptors();
 		}
+
+		BOOST_FOREACH(Descriptor* pDesc, descs)
+			if (pDesc->statInfo) pDesc->statInfo->lastResult = 1.0;
+
 		return matches;
 	}
 
 	Match DescriptorFilter::getBestMatch(Descriptor& desc, Descriptors& descs)
 	{
-		MatchList matches = getMatches(desc,descs,true);
+		Matches matches = getMatches(desc,descs);
 		LOG_MSG << fmt("Found % matches.") % matches.size();
 
-		Match result = matches.front();
-
-		if (statistics)
-		{
-			if (statistics->exclude())
-			{		
-				while (statistics->at(result.desc).excluded && !matches.empty())
-				{
-					matches.pop_front();
-					result = matches.front();
-				}
-
-				if (!matches.empty())
-				{
-					statistics->at(result.desc).excluded = true;
-				}
-			}
-		}
+		Match result = *matches.begin();
 		return result;
 	}
 

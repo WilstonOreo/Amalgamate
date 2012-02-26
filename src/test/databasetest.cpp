@@ -29,15 +29,19 @@ int main(int ac, char* av[])
 	stringstream descStr; 
 	descStr << "Allowed options";
 
-	string databaseFile,inputDir,tilelistFile,configFile;
+	string databaseFile,inputDir,output,configFile;
+	unsigned count = 0;
+
 	// Declare the supported options.
 	po::options_description desc(descStr.str());
 
 	desc.add_options()
 		("help,h", "Display help message.")
 		("inputdir,i", po::value<string>(&inputDir), "Input dir")
+		("output,o", po::value<string>(&output), "Output file")
 		("database,d", po::value<string>(&databaseFile), "Database file")
-		("config,c", po::value<string>(&configFile),"Configurate file")	
+		("config,c", po::value<string>(&configFile),"Configurate file")
+		("count,n", po::value<unsigned>(&count), "Count")
 	;
 
 	// Parse the command line arguments for all supported options
@@ -47,13 +51,20 @@ int main(int ac, char* av[])
 
 	if (vm.count("help")) { cout << desc << endl; return 1; }
 
-
 	amalgamate::Config config(configFile);
 	config.print();
 	
 	amalgamate::Database databaseIn(&config);
-	amalgamate::Database databaseOut(&config); 
 	
+	if (vm.count("count") && (count > 0))
+	{
+		databaseIn.read(databaseFile);
+		databaseIn.resize(count);
+		databaseIn.write(output);
+		return EXIT_SUCCESS;
+	}
+
+	amalgamate::Database databaseOut(&config); 
 	databaseOut.generate(inputDir,databaseFile);
 	string databaseOutStr = databaseOut.toString();
 

@@ -49,6 +49,7 @@ namespace amalgamate
 		}
 
 		float *desc = color_gist_scaletab(&im,nblocks,n_scale,orientations_per_scale);
+		if (!desc) return;
 
 		/* compute descriptor size */
 		size_t descsize = 0;
@@ -61,7 +62,9 @@ namespace amalgamate
 			desc_[i] = CLIP_u16(int(desc[i]*0.5*65535));
 		
 		free(desc);
-		free(im.c1); free(im.c2); free(im.c3);
+		free(im.c1); 
+		free(im.c2); 
+		free(im.c3);
 	}
 
 	float GIST::compare(const GIST& gist)
@@ -72,11 +75,16 @@ namespace amalgamate
 		int sum = 0;
 		for (size_t i = 0; i < desc_.size(); i++)
 		{
-			u32 diff = desc_[i] - gist.desc_[i];
-			sum += (diff*diff) >> 8;
+			int diff = (desc_[i] - gist.desc_[i]) / 16;
+			sum += diff*diff / 16;
 		}
+		
 		sum >>= 8;
-		return float(sum)/(65536.0*float(desc_.size()));
+		float result = float(sum)/(65536.0*float(desc_.size())); 
+
+		if (result < 0) LOG_WRN << fmt("Result smaller than 0 (=%)") % result;
+		
+		return result;
 	}
 
 	}

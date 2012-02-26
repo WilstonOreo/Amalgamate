@@ -17,7 +17,7 @@ namespace amalgamate
 		TileMatches( Rect _rect, Descriptor* _desc );
 		Descriptor* desc;	
 		Rect rect;
-		MatchList			histSmallMatches, histLargeMatches, 
+		Matches				histSmallMatches, histLargeMatches, 
 							gistMatches,thumbMatches;
 		Match* 				bestMatch;
 		list<TileMatches*> 	neighbors;

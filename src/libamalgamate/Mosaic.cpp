@@ -31,6 +31,7 @@ namespace amalgamate
 
 	void TileMatches::getBestMatch()
 	{
+	/*
 		BOOST_FOREACH( Match& match, thumbMatches )
 		{
 			bestMatch = &match;
@@ -46,8 +47,8 @@ namespace amalgamate
 				}
 			}
 		}
-		bestMatch = &thumbMatches.back();
 		desc->filename(bestMatch->desc->filename());
+	*///	bestMatch = &(*thumbMatches.end());
 	}
 
 	Mosaic::Mosaic()
@@ -139,7 +140,7 @@ namespace amalgamate
 		{
 			descriptors = tileMatches.gistMatches.descriptors();
 			tileMatches.thumbMatches =
-				filter.getMatches(*tileMatches.desc,DT_THUMBNAIL,thumbCount,descriptors,true);
+				filter.getMatches(*tileMatches.desc,DT_THUMBNAIL,thumbCount,descriptors);
 			cout << "Please wait ... " << (100*count/smatches) << "% done\r"; 
 			count++;
 		}
@@ -159,7 +160,7 @@ namespace amalgamate
 			
 			cout << tileMatches.desc->filename() << ", #" << count << endl;
 			Image tileImg(tileMatches.desc->filename());
-			drawTile(mosaic,tileImg,tileMatches.rect,tileMatches.bestMatch->rect);
+			//drawTile(mosaic,tileImg,tileMatches.rect,tileMatches.bestMatch->rect);
 			count++;
 		}
 

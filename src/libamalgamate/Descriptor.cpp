@@ -3,30 +3,40 @@
 #include "boost/format.hpp"
 #include "boost/foreach.hpp"
 
+#include "amalgamate/DescriptorFilter.hpp"
+
 using namespace Magick;
 using namespace boost;
 
 namespace amalgamate
 {
 	// Descriptor class /////////////////////////////////////////////////
-	Descriptor::Descriptor(): index_(0)
+	Descriptor::Descriptor(): statInfo(NULL), index_(0)
 	{
 	};
 
-	Descriptor::Descriptor( Image& image ): index_(0)
+	Descriptor::Descriptor( Image& image ): statInfo(NULL), index_(0)
 	{ 
 		build(image); 
 	}
 
-	Descriptor::Descriptor(Image& image, int _width, int _height, int _offX, int _offY): index_(0)
+
+	Descriptor::Descriptor(Image& image, int _width, int _height, int _offX, int _offY): statInfo(NULL), index_(0)
 	{
 		build(image,_width,_height,_offX,_offY); 
 	}
 
-	Descriptor::Descriptor( string _filename ): index_(0)
+	Descriptor::Descriptor( string _filename ): statInfo(NULL), index_(0)
 	{ 
 		build(_filename); 
 	}
+
+	Descriptor::~Descriptor()
+	{
+//		if (statInfo)
+//			delete statInfo;
+	}
+
 
 	bool Descriptor::build( string _filename, 
 							float _width, float _height, 

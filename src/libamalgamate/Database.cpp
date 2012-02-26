@@ -58,7 +58,7 @@ namespace amalgamate
 		*LOG << "done.";
 	}
 
-	void Database::read(string inputFile)
+	void Database::read(string inputFile, bool append)
 	{
 		Reader databaseReader(inputFile);
 		size_t n = 0; string header; 
@@ -77,12 +77,40 @@ namespace amalgamate
 		}
 
 		LOG_MSG << fmt("Database % contains % descriptors.") % inputFile % n;
-		clear(); resize(n);
+	
+		#define MAX_DATABASE_SIZE 350000
 
-		FOREACH_DESC(i)
+		if (!append)
 		{
-			databaseReader >> at(i);
-			at(i).index(i);
+			if (n > MAX_DATABASE_SIZE) n = MAX_DATABASE_SIZE;
+			clear(); resize(n);
+
+		 	FOREACH_DESC(i)
+		 	{
+				databaseReader >> at(i);
+				at(i).index(i);	
+				if ((i % 10000 == 0) && i > 0) 
+					LOG_MSG << fmt("Read % descriptors, % left") % i % (size() - i);	
+			}
+		}
+		else
+		{
+			size_t oldSize = size();
+			if (n+oldSize > MAX_DATABASE_SIZE)
+				resize(MAX_DATABASE_SIZE);
+			else
+				resize(n+oldSize);
+
+			for (int i = oldSize; i < size(); i++)
+			{
+				databaseReader >> at(i);
+				at(i).index(i);
+				
+				if ((i % 10000 == 0) && i > 0) 
+					LOG_MSG << fmt("Read % descriptors, % left") % (i-oldSize) % (size()-oldSize-(i-oldSize));
+			}
+
+			LOG_MSG << fmt("Database now contains % descriptors") % size();
 		}
 		databaseReader.close();
 	}
@@ -143,13 +171,14 @@ namespace amalgamate
 	void Database::buildDescriptors(const vector<string>& imageFileList, 
 							  float width, float height, float offX, float offY)
 	{
-		size_t fSize = imageFileList.size();
+		size_t fSize = imageFileList.size(); 
+				
 		resize(fSize);
 		LOG_MSG_(1) << "Build descriptors ";
 
-		#pragma omp parallel
+		#pragma omp parallel 
 		{
-			int n = omp_get_num_threads();
+			int n = omp_get_num_threads(); cout << n;
 			for (size_t i = 0; i < (fSize+n)/n; i++) 
 			{
 				int threadIdx = omp_get_thread_num();
@@ -160,6 +189,8 @@ namespace amalgamate
 					{ LOG_ERR << fmt("Error reading % %") % imageFileList[pos] % e.what(); }
 				if ((pos % 100 == 0) && pos > 0) 
 					LOG_MSG << fmt("Built % descriptors, % left") % pos % (fSize - pos);
+			
+			
 			}
 		}
 	}

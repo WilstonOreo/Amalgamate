@@ -33,7 +33,7 @@ namespace amalgamate
 	{
 		if (hist.colorRange_ != colorRange_) return INVALID_MATCH;
 
-		LOG_MSG_(2) << fmt("%, %") % colorRange_ % hist.colorRange_; 
+		LOG_MSG_(3) << fmt("%, %") % colorRange_ % hist.colorRange_; 
 		int sum = 0;
 		for (int i = 0; i < colorRange_; i++)
 		{
@@ -86,7 +86,7 @@ namespace amalgamate
 
 	void Histogram::setColorRange(u16 _colorRange)
 	{ 
-		_colorRange = (colorRange_ > 256) ? 256 : 
+		_colorRange = (_colorRange > 256) ? 256 : 
 					  (_colorRange < 4  ) ? 4   : _colorRange;
 		colorRange_=_colorRange;
 		y_.resize(colorRange_);

@@ -23,14 +23,14 @@ using namespace Magick;
 
 static amalgamate::Config config;
 
-#define MAX_COUNT 10
+#define MAX_COUNT 100
 
 void testHistSmall(amalgamate::Descriptor& desc, amalgamate::Descriptors& descs)
 {
 	LOG_MSG << "Get Hist small matches ... ";
 	amalgamate::DescriptorFilter filter(&config);
 
-	amalgamate::MatchList matches = filter.getMatches(desc,amalgamate::DT_HISTSMALL,MAX_COUNT,descs,true);
+	amalgamate::Matches matches = filter.getMatches(desc,amalgamate::DT_HISTSMALL,MAX_COUNT,descs);
 	LOG_MSG << fmt("Found % matches.") % matches.size();
 	int i = 0;
 	BOOST_FOREACH( amalgamate::Match m, matches )
@@ -45,7 +45,7 @@ void testHistLarge(amalgamate::Descriptor& desc, amalgamate::Descriptors& descs)
 	LOG_MSG << "Get Hist large matches ... ";
 	amalgamate::DescriptorFilter filter(&config);
 
-	amalgamate::MatchList matches = filter.getMatches(desc,amalgamate::DT_HISTLARGE,MAX_COUNT,descs,true);
+	amalgamate::Matches matches = filter.getMatches(desc,amalgamate::DT_HISTLARGE,MAX_COUNT,descs);
 	LOG_MSG << fmt("Found % matches.") % matches.size();
 	int i = 0;
 	BOOST_FOREACH( amalgamate::Match m, matches )
@@ -60,7 +60,7 @@ void testGist(amalgamate::Descriptor& desc, amalgamate::Descriptors& descs)
 	LOG_MSG << "Get Gist matches ... ";
 	amalgamate::DescriptorFilter filter(&config);
 
-	amalgamate::MatchList matches = filter.getMatches(desc,amalgamate::DT_GIST,MAX_COUNT,descs,true);
+	amalgamate::Matches matches = filter.getMatches(desc,amalgamate::DT_GIST,MAX_COUNT,descs);
 	LOG_MSG << fmt("Found % matches.") % matches.size();
 	int i = 0;
 	BOOST_FOREACH( amalgamate::Match m, matches )
@@ -76,12 +76,12 @@ void testThumbnail(amalgamate::Descriptor& desc, amalgamate::Descriptors& descs)
 	LOG_MSG << "Get Thumbnail matches ... ";
 	amalgamate::DescriptorFilter filter(&config);
 
-	amalgamate::MatchList matches = filter.getMatches(desc,amalgamate::DT_THUMBNAIL,MAX_COUNT,descs,true);
+	amalgamate::Matches matches = filter.getMatches(desc,amalgamate::DT_THUMBNAIL,MAX_COUNT,descs);
 	LOG_MSG << fmt("Found % matches.") % matches.size();
 	int i = 0;
 	BOOST_FOREACH( amalgamate::Match m, matches )
 	{
-		LOG_MSG << fmt("%: %, %, Rect = %") % i % m.desc->filename() % m.result % m.rect.toString();
+		LOG_MSG << fmt("%: %, %") % i % m.desc->filename() % m.result;
 		i++;
 	}
 }
@@ -126,32 +126,28 @@ int main(int ac, char* av[])
 	LOG_MSG << "Get descriptors ... ";
 	amalgamate::Descriptors descs = database.descriptors();
 	
-	LOG->level(2);
-	testHistSmall(desc,descs);
-	testHistLarge(desc,descs);
+	LOG->level(1);
+//	testHistSmall(desc,descs);
+//	testHistLarge(desc,descs);
 	testGist(desc,descs);
-	testThumbnail(desc,descs);
-	
+//	testThumbnail(desc,descs);
+/*	
 	LOG_MSG << "Test with statistics.";
 	amalgamate::Statistics statistics(1.0);
 	amalgamate::DescriptorFilter filter(&config,&statistics);
-	amalgamate::MatchList matches = filter.getMatches(desc,descs,true);
+	amalgamate::Matches matches = filter.getMatches(desc,descs);
 	LOG_MSG << fmt("Found % matches.") % matches.size();
 
 	int i = 0;
 	BOOST_FOREACH( amalgamate::Match m, matches )
 	{
-		LOG_MSG << fmt("%: %, %, Rect = %") % i % m.desc->filename() % m.result % m.rect.toString();
+		LOG_MSG << fmt("%: %, %") % i % m.desc->filename() % m.result;
 		i++;
 	}
 
 	LOG_MSG << "Test with best match and type preference defined by config.";
 
-	filter
-
-
-
-
+*/
 	return EXIT_SUCCESS;
 }
 
