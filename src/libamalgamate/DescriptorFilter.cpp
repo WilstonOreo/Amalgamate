@@ -89,22 +89,10 @@ namespace amalgamate
 		size_t count = 0;
 		switch (dType)
 		{
-			case DT_HISTSMALL: 
-				if (config)  count = config->as<int>("FILTER_HISTSMALL_MATCHES"); 
-				else  	count = 1000;
-				break;
-			case DT_HISTLARGE:
-				if (config) count = config->as<int>("FILTER_HISTLARGE_MATCHES"); 
-				else 	count = 250;
-				break;
-			case DT_GIST: 		
-				if (config) count = config->as<int>("FILTER_GIST_MATCHES"); 				
-				else 	count = 100;
-				break;
-			case DT_THUMBNAIL:  
-				if (config) count = config->as<int>("FILTER_THUMBNAIL_MATCHES"); 				
-				else 	count = 100;
-				break;
+			case DT_HISTSMALL: 	count = histSmallCount(); break;
+			case DT_HISTLARGE: 	count = histLargeCount(); break;
+			case DT_GIST: 		count = gistCount(); break;
+			case DT_THUMBNAIL:  count = thumbnailCount(); break; 
 			default: break; 
 		}
 		return count;
@@ -113,14 +101,14 @@ namespace amalgamate
 	Matches DescriptorFilter::getMatches(Descriptor& desc, DescriptorType dType, 
 			Descriptors& descs)
 	{
-		if (!config) { LOG_ERR << "No config given."; return Matches(0); }
+		if (!config()) { LOG_ERR << "No config given."; return Matches(0); }
 
 		return getMatches(desc,dType,descTypeCount(dType),descs);
 	}
 
 	Matches DescriptorFilter::getMatches(Descriptor& desc, Descriptors& descs)
 	{
-		if (!config) { LOG_ERR << "No config given."; return Matches(); }
+		if (!config()) { LOG_ERR << "No config given."; return Matches(); }
 
 		vector<DescriptorType> descTypes(DT_);
 
@@ -133,7 +121,7 @@ namespace amalgamate
 		do
 		{
 			swapped = false;
-			for (int i = 0; i < n-1; i++)
+			for (size_t i = 0; i < n-1; i++)
 				if (descTypeCount(descTypes[i]) < descTypeCount(descTypes[i+1]))
 				{
 					swap(descTypes[i],descTypes[i+1]);

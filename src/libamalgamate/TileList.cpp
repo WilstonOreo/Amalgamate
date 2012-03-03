@@ -23,9 +23,8 @@ using namespace boost;
 
 namespace amalgamate
 {
-	TileList::TileList(Config* _config)
+	TileList::TileList(Config* _config) : ConfigurableObject(_config)
 	{
-		config(_config);
 		cout << "Generate ";
 		switch (getTileGenType())
 		{
@@ -120,9 +119,9 @@ namespace amalgamate
 
 	TileGenType TileList::getTileGenType()
 	{
-		if (!config_) return TGTYPE_REGULAR;
+		if (!config()) return TGTYPE_REGULAR;
 
-		string tileGenStr(config_->get("TILEGEN"));
+		string tileGenStr(config()->get<string>("TILEGEN"));
 		to_upper(tileGenStr);
 
 		#define IF(a) if (tileGenStr == (a)) return 

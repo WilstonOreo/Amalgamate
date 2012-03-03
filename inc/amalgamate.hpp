@@ -3,14 +3,15 @@
 #include "amalgamate/TileList.hpp"
 #include "amalgamate/Database.hpp"
 #include "amalgamate/Mosaic.hpp"
-#include "amalgamate/Config.hpp"
+
+#include "tbd/config.h"
 
 using namespace std;
 
 
 namespace amalgamate
 {
-	Config config;
+	tbd::Config config;
 
 	void generateDatabase(string inputDir, string outputFile)
 	{
@@ -48,7 +49,7 @@ namespace amalgamate
 	void loadConfigFile(string configFileName) 
 	{
 		config.read(configFileName);
-		config.print();
+		cout << config;
 	}
 }
 

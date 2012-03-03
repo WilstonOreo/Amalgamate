@@ -5,10 +5,7 @@
 #include <boost/filesystem.hpp>
 #include <amalgamate/utils.hpp>
 
-using namespace std;
-using namespace Magick;
 using namespace boost;
-
 
 namespace amalgamate 
 {
@@ -51,7 +48,7 @@ namespace amalgamate
 	*///	bestMatch = &(*thumbMatches.end());
 	}
 
-	Mosaic::Mosaic()
+	Mosaic::Mosaic(Config* _config) : ConfigurableObject(_config)
 	{
 	}
 
@@ -100,51 +97,7 @@ namespace amalgamate
 		#define FOREACH_TILE BOOST_FOREACH( TileMatches& tileMatches, matches_ )
 		
 		DescriptorFilter filter(config());
-
-		cout << "Phase 2: Get histogram matches ... " << endl;
-		cout << "1st pass..." << endl;
-
-		size_t histSmallCount = config()->as<size_t>("MOSAIC_HISTOGRAM_MATCHES_1ST");
-		
-		Descriptors descriptors = database()->descriptors();
-		FOREACH_TILE
-			tileMatches.histSmallMatches = 
-				filter.getMatches(*tileMatches.desc,DT_HISTSMALL,histSmallCount,descriptors);
-
-		cout << "2nd pass..." << endl;
-		size_t histLargeCount = config()->as<size_t>("MOSAIC_HISTOGRAM_MATCHES_2ND");
-		FOREACH_TILE
-		{
-			descriptors = tileMatches.histSmallMatches.descriptors();
-			tileMatches.histLargeMatches =  
-				filter.getMatches(*tileMatches.desc,DT_HISTLARGE,histLargeCount,descriptors);
-		}
-
-		cout << "Phase 3: Get GIST matches... " << endl;
-		size_t gistCount = config()->as<size_t>("MOSAIC_GIST_MATCHES");
-		FOREACH_TILE
-		{
-			descriptors = tileMatches.histLargeMatches.descriptors();
-			tileMatches.gistMatches = 
-				filter.getMatches(*tileMatches.desc,DT_GIST,gistCount,descriptors);
-		}
-
-		cout << "Phase 4: Get thumbnail matches ... " << endl;
-		int maxDist = mosaic.rows()*mosaic.rows() + mosaic.columns()*mosaic.columns();
-		maxDist = maxDist * 10 / (tileList_->size());
-		int smatches = matches_.size(); count = 0;
-		float border = config()->as<float>("THUMBNAIL_MATCH_BORDER");
-		size_t thumbCount = config()->as<size_t>("MOSAIC_THUMB_MATCHES");
-
-		FOREACH_TILE
-		{
-			descriptors = tileMatches.gistMatches.descriptors();
-			tileMatches.thumbMatches =
-				filter.getMatches(*tileMatches.desc,DT_THUMBNAIL,thumbCount,descriptors);
-			cout << "Please wait ... " << (100*count/smatches) << "% done\r"; 
-			count++;
-		}
-
+/*
 		cout << "Phase 5: Get best matches ... " << endl;
 		FOREACH_TILE
 		{
@@ -165,7 +118,7 @@ namespace amalgamate
 		}
 
 		cout << "Phase 7: Blend image ... " << endl; 
-		blendImage(motif,mosaic);
+		blendImage(motif,mosaic);*/
 	}
 
 	void Mosaic::getNeighbors(TileMatches& matches, int maxDist)
@@ -225,12 +178,12 @@ namespace amalgamate
 		PixelPacket* mImgPixels = mosaic.getPixels(0,0,mosaic.columns(),mosaic.rows());
 		int n = bImg.rows()*bImg.columns(); 
 
-		int blendFactor = int(config_->as<float>("MOSAIC_BLENDFACTOR")*65535);
+		int blF = int(blendFactor()*65535);
 		for (int i = 0; i < n; i++)
 		{
-			mImgPixels[i].red 	= BLEND_u16(bImgPixels[i].red, 	 mImgPixels[i].red, 	blendFactor);
-			mImgPixels[i].green = BLEND_u16(bImgPixels[i].green, mImgPixels[i].green, 	blendFactor);
-			mImgPixels[i].blue 	= BLEND_u16(bImgPixels[i].blue,  mImgPixels[i].blue, 	blendFactor);
+			mImgPixels[i].red 	= BLEND_u16(bImgPixels[i].red, 	 mImgPixels[i].red,  blF);
+			mImgPixels[i].green = BLEND_u16(bImgPixels[i].green, mImgPixels[i].green,blF);
+			mImgPixels[i].blue 	= BLEND_u16(bImgPixels[i].blue,  mImgPixels[i].blue, blF);
 		}
 		mosaic.syncPixels();
 	}

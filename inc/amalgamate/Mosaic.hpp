@@ -7,6 +7,7 @@
 #include "amalgamate/DescriptorFilter.hpp"
 #include "amalgamate/TileList.hpp"
 
+using namespace tbd;
 using namespace std;
 using namespace Magick;
 
@@ -27,35 +28,28 @@ namespace amalgamate
 		int  equalNeighbors();
 	};
 
-	class Mosaic 
+	class Mosaic : public ConfigurableObject 
 	{
 	public:
-		Mosaic();
-		Mosaic(Database* _database, TileList* _tileList, Config* _config);
+		Mosaic(Config* _config = NULL);
+		Mosaic(Database* _database, TileList* _tileList, Config* _config = NULL);
 		~Mosaic(); 
 
 		void render(string inputFile, string outputFile);
 		void render(Image& motif, Image& mosaic);
 
-		Database* database() 	{ return database_; }
-		void database(Database* _database) { database_=_database; }
-
-		Config* config() 		{ return config_; }
-		void config(Config* _config) { config_=_config; }
-
-		TileList* tileList() 	{ return tileList_; }
-		void tileList(TileList* _tileList) { tileList_=_tileList; }
+		TBD_DECLARE_PROPERTY_PTR(Database,database);
+		TBD_DECLARE_PROPERTY_PTR(TileList,tileList);
 
 		void drawTile(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect);
 		void blendImage(const Image& motif, Image& mosaic);
+
+		TBD_DECLARE_PROPERTY_CFG(float,blendFactor,"MOSAIC_BLENDFACTOR",0.3);
 
 	private:
 		void getNeighbors(TileMatches& matches, int maxDist);
 		void clearMatches();
 
-		Config* config_;
-		Database* database_;
-		TileList* tileList_;
 		vector<TileMatches> matches_;
 	};
 }

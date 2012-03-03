@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 PROJECT(amalgamate)
 
-INCLUDE_DIRECTORIES(./inc /usr/include/ImageMagick)
+INCLUDE_DIRECTORIES(./inc ./TbdLib/include /usr/include/ImageMagick)
 
 AUX_SOURCE_DIRECTORY(./src/libgist libgist_src)
 AUX_SOURCE_DIRECTORY(./src/libamalgamate libamalgamate_src)
@@ -15,7 +15,7 @@ ADD_LIBRARY(poisson STATIC ${libpoisson_src})
 ADD_LIBRARY(amalgamatecommon SHARED ${libamalgamate_src})
 
 ADD_EXECUTABLE(amalgamate ./src/amalgamate/main.cpp)
-ADD_EXECUTABLE(infinitepanorama ./src/infinitepanorama/infinitepanorama.cpp ./src/infinitepanorama/GUI.cpp ./src/infinitepanorama/Panorama.cpp)
+ADD_EXECUTABLE(infinitepanorama ./src/infinitepanorama/infinitepanorama.cpp ./src/infinitepanorama/Panorama.cpp)
 
 
 TARGET_LINK_LIBRARIES(graphcut)

@@ -3,11 +3,13 @@
 #include <Magick++.h>
 #include <boost/foreach.hpp>
 #include <list>
+#include <set>
+#include <tbd/config.h>
 
 #include "amalgamate/Database.hpp"
-#include "amalgamate/Config.hpp"
 
 using namespace std;
+using namespace tbd;
 using namespace Magick;
 
 namespace amalgamate
@@ -84,14 +86,19 @@ namespace amalgamate
 		size_t maxSize_;
 	};
 
-	struct DescriptorFilter
+	struct DescriptorFilter : public ConfigurableObject
 	{
 		DescriptorFilter(Config* _config = NULL, 
-						 Statistics* _statistics = NULL) 
+						 Statistics* _statistics = NULL) :
+			ConfigurableObject(_config)
 		{  
-			config = _config;
 			statistics = _statistics; 
 		}
+
+		TBD_DECLARE_PROPERTY_CFG(size_t,histSmallCount,"FILTER_HISTSMALL_MATCHES",1000);
+		TBD_DECLARE_PROPERTY_CFG(size_t,histLargeCount,"FILTER_HISTLARGE_MATCHES",250);
+		TBD_DECLARE_PROPERTY_CFG(size_t,gistCount, 	   "FILTER_GIST_MATCHES", 	  100);
+		TBD_DECLARE_PROPERTY_CFG(size_t,thumbnailCount,"FILTER_THUMBNAIL_MATCHES",100);
 
 		Matches getMatches(Descriptor& desc, DescriptorType dType, 
 							 size_t maxCount, Descriptors& descs);
@@ -101,7 +108,6 @@ namespace amalgamate
 		Match     getBestMatch(Descriptor& desc, Descriptors& descs);
 
 		Statistics* 		statistics;
-		Config* config;
 
 	private:
 		size_t descTypeCount(const DescriptorType dType);

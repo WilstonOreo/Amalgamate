@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <Magick++.h>
-#include "log/Log.hpp"
+#include "tbd/log.h"
 
 using namespace Magick;
 using namespace std;

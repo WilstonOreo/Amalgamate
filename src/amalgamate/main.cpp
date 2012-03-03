@@ -16,6 +16,7 @@ using namespace std;
 
 typedef enum { MODE_NONE = -1, MODE_MOSAIC, MODE_TILES, MODE_DATABASE } PassoireMode;
 
+LOG_INIT;
 
 PassoireMode getMode(po::variables_map& vm)
 {
@@ -24,14 +25,13 @@ PassoireMode getMode(po::variables_map& vm)
 		if (vm.count("mosaic") && !vm.count("database") && !vm.count("tiles")) return MODE_MOSAIC; else
 		if (!vm.count("mosaic") && !vm.count("database") && vm.count("tiles")) return MODE_TILES; else
 		if (!vm.count("mosaic") && vm.count("database") &&  !vm.count("tiles")) return MODE_DATABASE;	
-	}
-	else
-		return MODE_NONE;
+	};
+	return MODE_NONE;
 }
 
 int main(int ac, char* av[])
 {
-	cout << "LaPassoire. -- written by Wilston Oreo." << endl;
+	cout << "Amalgamate. -- written by Wilston Oreo." << endl;
 	cout << "Released under GPLv2." << endl << endl;
 
 	stringstream descStr; 
@@ -55,13 +55,13 @@ int main(int ac, char* av[])
 
 	desc.add_options()
 		("help,h", "Display help message.")
-		("input,i", po::value<string>(&input), "Input directory")
-		("output,o", po::value<string>(&output), "Output files")
-		("size,s", po::value<string>(&sizeStr) , "Size of image / Number of tiles")	
+		("input,i", 	po::value<string>(&input), 	 "Input directory")
+		("output,o", 	po::value<string>(&output),  "Output files")
+		("size,s", 		po::value<string>(&sizeStr), "Size of image / Number of tiles")	
 		("database,D","Database mode")
 		("mosaic,M","Mosaic mode")
 		("tiles,T","Tile mode")
-		("config,c", po::value<string>(),"Configurate file")
+		("config,c", po::value<string>(),"Configuration file")
 		("verbose,v","Verbose text output")
 		("databasefile,d", po::value<string>(),"Database")
 		("tilelist,t", po::value<string>(),"List of tiles")

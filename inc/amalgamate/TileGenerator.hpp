@@ -1,27 +1,21 @@
 #pragma once
 #include <Magick++.h>
 #include <vector>
+#include <tbd/config.h>
 
 #include "amalgamate/utils.hpp"
-#include "amalgamate/Config.hpp"
 #include "amalgamate/Tile.hpp"
 #include "amalgamate/TileList.hpp"
 
+using namespace tbd;
 using namespace std;
 using namespace Magick;
 
 namespace amalgamate
 {
-
-	class TileGenerator {
+	class TileGenerator : public ConfigurableObject {
 	public: 
-		Config* config() 		{ return config_; }
-		void config(Config* _config) 
-		{
-			config_=_config;
-			if (_config) size_ = Geometry(config_->as<string>("TILEGEN_SIZE"));
-		}
-		
+
 		virtual string nameString() = 0;
 		virtual void genTiles(Image& img, TileList* tileList) = 0;
 	protected:
@@ -86,7 +80,6 @@ namespace amalgamate
 			return -1;
 		}
 
-		Config* config_;
 		Geometry size_;
 	};
 

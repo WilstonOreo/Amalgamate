@@ -1,5 +1,6 @@
 #include "amalgamate/Database.hpp"
 
+#include <set>
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 

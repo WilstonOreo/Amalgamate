@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
 #include <Magick++.h>
+#include <tbd/config.h>
 
 #include "amalgamate/utils.hpp"
-#include "amalgamate/Config.hpp"
 #include "amalgamate/Tile.hpp"
 
+using namespace tbd;
 using namespace std;
 using namespace Magick;
 
@@ -14,15 +15,10 @@ namespace amalgamate
 	class TileGenerator;
 	enum TileGenType { TGTYPE_REGULAR, TGTYPE_BSP, TGTYPE_WARP, TGTYPE_COLLAGE };
 
-	class TileList : public vector<Tile> {
+	class TileList : public ConfigurableObject, public vector<Tile> {
 	public:
-		TileList(Config* _config);
+		TileList(Config* _config = NULL);
 		TileList(string inputFile);
-
-		Config* config() 		{ return config_; }
-		void config(Config* _config) { config_=_config; }
-
-		TileGenerator* tileGen() { return tileGen_; }
 
 		void read(string inputFile);
 		void write(string outputFile);
@@ -31,10 +27,11 @@ namespace amalgamate
 
 		void visualize(Image& image);
 		void visualize(string inputImageFile, string outputImageFile);
+
+		TBD_DECLARE_PROPERTY_RO(TileGenerator*,tileGen);
+
 	private:
 		TileGenType getTileGenType();
-		Config* config_;
-		TileGenerator* tileGen_;
 	};
 }
 
