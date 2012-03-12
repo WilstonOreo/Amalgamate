@@ -4,6 +4,8 @@
 #include <sstream>
 #include <Magick++.h>
 #include "tbd/log.h"
+#include <boost/foreach.hpp>
+
 
 using namespace Magick;
 using namespace std;
@@ -77,58 +79,62 @@ namespace amalgamate
 
 	struct Point {
 		Point() { set(0,0); }
-		Point(int _x, int _y) { set(_x,_y); }
+		Point(double _x, double _y) { set(_x,_y); }
 
-		void set(int _x , int _y) { x = _x; y = _y; };
+		void set(double _x , double _y) { x = _x; y = _y; };
 
-		int dist(const Point& p) { int dx = x-p.x, dy = y-p.y; return dx*dx + dy*dy; }
+		double dist(const Point& p) { double dx = x-p.x, dy = y-p.y; return dx*dx + dy*dy; }
+
+		friend Writer& operator<<(Writer& w, Point& p)
+		{
+			w << p.x; w << p.y;
+			return w;
+		}
+
+		friend Reader& operator>>(Reader& r, Point& p)
+		{
+			r >> p.x; r >> p.y;
+			return r;
+		}
 
 		string toString() { stringstream ss; ss << x << "|" << y; return ss.str(); }
 
-		int x,y;
+		double x,y;
 	};
 
 	class Rect {
 		public:
 			Rect() { set(0,0,0,0); }
-			Rect(int _x1, int _y1, int _x2, int _y2) { set(_x1,_y1,_x2,_y2); }
+			Rect(double _x1, double _y1, double _x2, double _y2) { set(_x1,_y1,_x2,_y2); }
 
-			void set(int _x1, int _y1, int _x2, int _y2)
+			void set(double _x1, double _y1, double _x2, double _y2)
 			{
 				x1_=_x1; y1_=_y1; x2_=_x2; y2_=_y2;
 				validate();
 			}
 
-			int x1() { return x1_; }
-			int y1() { return y1_; }
-			int x2() { return x2_; }
-			int y2() { return y2_; }
+			double x1() { return x1_; }
+			double y1() { return y1_; }
+			double x2() { return x2_; }
+			double y2() { return y2_; }
 
-			void x1(int _x1) { x1_=_x1; validate(); }
-			void y1(int _y1) { y1_=_y1; validate(); }
-			void x2(int _x2) { x2_=_x2; validate(); }
-			void y2(int _y2) { y2_=_y2; validate(); }
+			void x1(double _x1) { x1_=_x1; validate(); }
+			void y1(double _y1) { y1_=_y1; validate(); }
+			void x2(double _x2) { x2_=_x2; validate(); }
+			void y2(double _y2) { y2_=_y2; validate(); }
 
-			int p1(int axis) { if (axis == X_AXIS) return x1(); else return y1(); }
-			int p2(int axis) { if (axis == X_AXIS) return x2(); else return y2(); }
-			void p1(int value, int axis) { if (axis == X_AXIS) x1_ = value; else y1_ = value; }
-			void p2(int value, int axis) { if (axis == X_AXIS) x2_ = value; else y2_ = value; }
+			double p1(double axis) { if (axis == X_AXIS) return x1(); else return y1(); }
+			double p2(double axis) { if (axis == X_AXIS) return x2(); else return y2(); }
+			void p1(double value, double axis) { if (axis == X_AXIS) x1_ = value; else y1_ = value; }
+			void p2(double value, double axis) { if (axis == X_AXIS) x2_ = value; else y2_ = value; }
 
 			Point center() { validate(); return Point((x2()+x1())/2,(y2()+y1())/2); }
 
-			Rect extendedTop(int p) 	{ return Rect(x1_,y1_-p,x2_,y2_); }
-			Rect extendedLeft(int p) 	{ return Rect(x1_-p,y1_,x2_,y2_); }
-			Rect extendedBottom(int p) 	{ return Rect(x1_,y1_,x2_,y2_+p); }
-			Rect extendedRight(int p) 	{ return Rect(x1_,y1_,x2_+p,y2_); }
+			void move(double x, double y) { x1_+=x; x2_+=x; y1_+=y; y2_+=y; }
+			void scale(double sx, double sy) { x1_ *= sx; y1_ *= sy; x2_ *= sx; y2_ *= sy; }
 
-			void move(int x, int y) { x1_+=x; x2_+=x; y1_+=y; y2_+=y; }
-
-			bool largerThan(Geometry size) { return (width()>int(size.width()) && height()>int(size.height())); }
-			bool smallerThan(Geometry size) { return (width()<int(size.width()) && height()<int(size.width())); }
-
-			int width()  { return x2()-x1(); }
-			int height() { return y2()-y1(); }
-			int dim(int axis) { if (axis == X_AXIS) return width(); else return height(); }
+			double width()  { return x2()-x1(); }
+			double height() { return y2()-y1(); }
 
 			string toString() { stringstream ss; 
 				ss << x1_ << "," << y1_ << "," << x2_ << "," << y2_; 
@@ -143,7 +149,7 @@ namespace amalgamate
 				}
 
 		private:
-				int x1_, y1_, x2_, y2_; 
+				double x1_, y1_, x2_, y2_; 
 
 				inline void validate()
 				{

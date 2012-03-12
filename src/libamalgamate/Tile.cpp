@@ -1,58 +1,41 @@
 #include "amalgamate/Tile.hpp"
 
-#include <iostream>
-#include <sstream>
-#include <boost/algorithm/string.hpp>
-
 using namespace std;
 using namespace Magick;
-using namespace boost;
-
 
 namespace amalgamate
 {
-	void Tile::set(Image& img, Geometry& geom)
+	list<Coordinate>  Tile::getCoords(int width, int height)
 	{
-		x1 = double(img.columns())/double(geom.width());
-		y1 = double(img.rows())/double(geom.height());
-		x2 = double(img.columns())/double(geom.width());
-		y2 = double(img.rows())/double(geom.height());	
-		validate();
+		if (empty()) return list<Coordinate>();
+
+		list<Coordinate> coords;
+		BOOST_FOREACH ( Point& p, *this )
+			coords.push_back(Coordinate(p.x*width,p.y*height));
+		return coords;
 	}
 
-	void Tile::set(double _x1, double _y1, double _x2, double _y2)
+	Rect Tile::getRect(int width, int height)
 	{
-		x1 = _x1; y1 = _y1; x2 = _x2; y2 = _y2; validate();
+		Rect rect(INF,INF,-INF,-INF);
+		BOOST_FOREACH ( Point& p, *this )
+			rect.set(min(rect.x1(),p.x),min(rect.y1(),p.y),
+					 max(rect.x2(),p.x),max(rect.y2(),p.y));
+		
+		rect.scale(width,height);
+		
+		return rect;
 	}
 
-	Rect Tile::get(Image& img) 
-	{ 
-		return Rect(int(img.columns()*x1),
-					int(img.rows()*y1),
-					int(img.columns()*x2),
-					int(img.rows()*y2));
-	}
-
-	string Tile::toString()
+	Image Tile::getMask(int width, int height)
 	{
-		stringstream ss; ss << x1 << ";" << y1 << ";";
-		ss << x2 << ";" << y2; return ss.str();
-	}
+		Image mask(Geometry(width,height), Color(0,0,0));
+		mask.strokeWidth(1);
+		mask.strokeColor("white");
+		mask.fillColor("white");
 
-	bool Tile::fromString(string str)
-	{
-		vector<string> values;
-		split( values, str, is_any_of(";"), token_compress_on );
-
-		if (values.size()==4)
-		{
-			x1 = atof(values[0].c_str());
-			y1 = atof(values[1].c_str());
-			x2 = atof(values[2].c_str());
-			y2 = atof(values[3].c_str());			
-			return true;
-		} else
-			return false;
+		list<Coordinate> coords = getCoords(width,height);
+		mask.draw( DrawablePolygon(coords) );
+		return mask;
 	}
 }
-

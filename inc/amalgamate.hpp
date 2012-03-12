@@ -3,7 +3,7 @@
 #include "amalgamate/TileList.hpp"
 #include "amalgamate/Database.hpp"
 #include "amalgamate/Mosaic.hpp"
-
+#include "amalgamate/tilegenerator/Regular.hpp"
 #include "tbd/config.h"
 
 using namespace std;
@@ -23,8 +23,8 @@ namespace amalgamate
 	void generateTileList(string inputFile, string outputFile)
 	{
 		LOG_MSG << "Generating tile list...";
-		TileList tileList(&config);
-		tileList.generate(inputFile,outputFile); 
+	//	TileList tileList(&config);
+	//	tileList.generate(inputFile,outputFile); 
 	}
 
 	void visualizeTileList(string inputFile, string tileListFile, string outputFile)
@@ -37,7 +37,6 @@ namespace amalgamate
 	void generateMosaic(string inputFile, string outputFile, 
 						string tileListFile, string databaseFile)
 	{
-
 		LOG_MSG << "Generate Mosaic ... ";
 		Database db(databaseFile);
 		TileList tileList(tileListFile);

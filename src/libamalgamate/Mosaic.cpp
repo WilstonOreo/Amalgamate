@@ -1,7 +1,6 @@
 #include "amalgamate/Mosaic.hpp"
 
 #include <stack>
-#include <boost/foreach.hpp>
 #include <boost/filesystem.hpp>
 #include <amalgamate/utils.hpp>
 
@@ -79,14 +78,13 @@ namespace amalgamate
 	{
 		clearMatches();
 
-		cout << "Phase 1: Get tile descriptors ... " << endl;
-		matches_.reserve(tileList_->size());
+		LOG_MSG << "Phase 1: Get tile descriptors ... ";
 
-		int count = 0;
-		BOOST_FOREACH( Tile tile, *tileList_ )
+/*		int count = 0;
+		BOOST_FOREACH( Tile& tile, *tileList() )
 		{
 			Image tileImage(motif);
-			Rect rect = tile.get(motif);
+			Rect rect = tile.getRect(motif.columns(),motif.rows());
 
 			Descriptor* desc = new Descriptor(tileImage,rect.width(),rect.height(),rect.x1(),rect.y1());
 
@@ -94,32 +92,10 @@ namespace amalgamate
 			matches_.push_back(tileMatches);
 		}
 
-		#define FOREACH_TILE BOOST_FOREACH( TileMatches& tileMatches, matches_ )
-		
+	
 		DescriptorFilter filter(config());
-/*
-		cout << "Phase 5: Get best matches ... " << endl;
-		FOREACH_TILE
-		{
-			getNeighbors(tileMatches,maxDist);
-		}	
-		FOREACH_TILE tileMatches.getBestMatch();
-
-		cout << "Phase 6: Place matching tiles into final image" << endl;
-		count = 0;
-		FOREACH_TILE
-		{
-			if (!tileMatches.bestMatch || tileMatches.desc->filename().empty()) continue;
-			
-			cout << tileMatches.desc->filename() << ", #" << count << endl;
-			Image tileImg(tileMatches.desc->filename());
-			//drawTile(mosaic,tileImg,tileMatches.rect,tileMatches.bestMatch->rect);
-			count++;
-		}
-
-		cout << "Phase 7: Blend image ... " << endl; 
-		blendImage(motif,mosaic);*/
-	}
+		blendImage(motif,mosaic);
+*/	}
 
 	void Mosaic::getNeighbors(TileMatches& matches, int maxDist)
 	{
@@ -163,7 +139,7 @@ namespace amalgamate
 			{
 				int dx = x - matchRect.x1(); if (dx < 0) dx = 0; if (dx >= matchRect.width()) dx = matchRect.width()-1;
 				int dy = y - matchRect.y1(); if (dy < 0) dy = 0; if (dy >= matchRect.height()) dy = matchRect.height()-1;
-				imgPixels[y*w+x] = tileImgPixels[dy*matchRect.width()+dx];
+				imgPixels[y*w+x] = tileImgPixels[dy*int(matchRect.width())+dx];
 			}
 		img.syncPixels();
 	}

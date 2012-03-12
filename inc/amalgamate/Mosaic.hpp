@@ -40,13 +40,11 @@ namespace amalgamate
 
 		TBD_DECLARE_PROPERTY_PTR(Database,database);
 		TBD_DECLARE_PROPERTY_PTR(TileList,tileList);
-
-		void drawTile(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect);
-		void blendImage(const Image& motif, Image& mosaic);
-
 		TBD_DECLARE_PROPERTY_CFG(float,blendFactor,"MOSAIC_BLENDFACTOR",0.3);
 
 	private:
+		void drawTile(Image& img, Image tileImg, Rect& tileRect, Rect& matchRect);
+		void blendImage(const Image& motif, Image& mosaic);
 		void getNeighbors(TileMatches& matches, int maxDist);
 		void clearMatches();
 

@@ -7,31 +7,41 @@ using namespace Magick;
 
 namespace amalgamate
 {		
-	namespace tilegenerator 
-	{
 	class Regular : public TileGenerator 	
 	{	
-	public:	
+	public:
+		Regular(Config* _config = NULL) : TileGenerator(_config)
+		{
+
+		}
+
 		string nameString() { return string("Regular"); }
 
-		void genTiles(Image& img, TileList* tileList)	
+		TileList generate(Image& img)	
 		{	
-			double tileWidth  = 1.0f/double(size().width());
-			double tileHeight = 1.0f/double(size().height());
+			double 	tileWidth  = 1.0/double(tilesHorz()),
+					tileHeight = 1.0/double(tilesVert());
+			TileList tileList;
 
-			for (size_t y = 0; y < size().height(); y++)
-				for (size_t x = 0; x < size().width(); x++)
+			for (size_t y = 0; y < tilesVert(); y++)
+				for (size_t x = 0; x < tilesHorz(); x++)
 				{
-					Tile tile; tile.set(double(x)*tileWidth,
-										double(y)*tileHeight,
-										double(x+1)*tileWidth,
-										double(y+1)*tileHeight);
-					tileList->push_back(tile);
+					Tile tile; 
+					double xW  = double(x)*tileWidth, 	xH  = double(y)*tileHeight,
+						   xW1 = double(x+1)*tileWidth, xH1 = double(y+1)*tileHeight;
+
+					tile.push_back(Point(xW ,xH ));
+					tile.push_back(Point(xW1,xH ));
+					tile.push_back(Point(xW1,xH1));
+					tile.push_back(Point(xW ,xH1));
+					tileList.push_back(tile);
 				}
 
-			cout << tileList->size() << " tiles generated. " << endl;
+			LOG_MSG << fmt("% tiles generated. ") % tileList.size();
+			return tileList;
 		}	
-	};	
-}
-}
 
+		TBD_DECLARE_PROPERTY_CFG(unsigned,tilesHorz,"REGULAR_TILES_HORZ",10);
+		TBD_DECLARE_PROPERTY_CFG(unsigned,tilesVert,"REGULAR_TILES_VERT",10);
+	};
+}

@@ -12,27 +12,15 @@ using namespace Magick;
 
 namespace amalgamate
 {
-	class TileGenerator;
-	enum TileGenType { TGTYPE_REGULAR, TGTYPE_BSP, TGTYPE_WARP, TGTYPE_COLLAGE };
-
-	class TileList : public ConfigurableObject, public vector<Tile> {
+	class TileList : public vector<Tile> 
+	{
 	public:
-		TileList(Config* _config = NULL);
-		TileList(string inputFile);
+		TileList(string inputFile = string());
 
 		void read(string inputFile);
 		void write(string outputFile);
-		void generate(Image& image); 
-		void generate(string inputFile, string outputFile);
 
 		void visualize(Image& image);
-		void visualize(string inputImageFile, string outputImageFile);
-
-		TBD_DECLARE_PROPERTY_RO(TileGenerator*,tileGen);
-
-	private:
-		TileGenType getTileGenType();
+		void visualize(string& inputImageFile, string& outputImageFile);
 	};
 }
-
-

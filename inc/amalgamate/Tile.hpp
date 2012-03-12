@@ -10,29 +10,27 @@ using namespace Magick;
 
 namespace amalgamate
 {
-	struct Tile {
-		union {
-			struct { double x1,y1,x2,y2; };
-			double coords[4];
-		};
+	class Tile : public vector<Point>
+	{
+	public:
+		Rect getRect(int width = 1, int height = 1);
+		Image getMask(int width, int height);
+		list<Coordinate> getCoords(int width = 1, int height = 1);
 
-		void validate() {		
-			if (x1 > x2) swap(x1,x2);
-			if (y1 > y2) swap(y1,y2);
+		friend Writer& operator<<(Writer& w, Tile& t)
+		{
+			w << t.size(); 
+			BOOST_FOREACH( Point& p, t ) w << p;
+			return w;
 		}
 
-		void set(Image& img, Geometry& geom);
-		void set(double _x1, double _y1, double _x2, double _y2);
-		Rect get(Image& img); 
-
-		string toString();
-		bool fromString(string str);
-
-		inline double area() const
+		friend Reader& operator>>(Reader& r, Tile& t)
 		{
-			double A=(x2-x1)*(y2-y1);
-			if (A < 0.0) A = -A;
-			return A;
+			size_t n = 0; 
+			r >> n; 
+			t.resize(n);
+			for (size_t i = 0; i < n; i++) r >> t[i];
+			return r;
 		}
 	};
 }

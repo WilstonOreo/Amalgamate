@@ -5,10 +5,13 @@
 
 #include "amalgamate.hpp"
 
+
 using namespace boost;
 namespace po = program_options;
 
 using namespace std;
+
+LOG_INIT;
 
 int main(int ac, char* av[])
 {
@@ -41,18 +44,24 @@ int main(int ac, char* av[])
 	    return 1;
 	}
 
-	amalgamate::Config config(configFile);
+	tbd::Config config(configFile);
 	if (vm.count("tilegen")) config.set("TILEGEN",tileGen);
-	config.print();
+	cout <<	config;
 
 	Magick::Image image(inputFile);
 	
-	amalgamate::TileList tileList(&config);
-	tileList.generate(image);
+	amalgamate::Regular regular(&config); 
+	amalgamate::TileList tileList = regular.generate(image);
+
 	tileList.visualize(image);
 
 	image.display();
 	image.write(outputFile);
+
+	tileList.write("testTiles.dat");
+	tileList.read("testTiles.dat");
+	tileList.visualize(image);
+	image.display();
 
 	return EXIT_SUCCESS;
 }
